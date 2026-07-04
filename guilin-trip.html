@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂林·陽朔 山水紀行 | 路小鮮 Leo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&family=Noto+Sans+TC:wght@200;400;500;700;900&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink-light: #3d362b;
+    --paper: #f4ede0;
+    --paper-warm: #ebe1cc;
+    --jade: #4a6b4a;
+    --jade-deep: #2d4a35;
+    --cinnabar: #b73e3a;
+    --cinnabar-deep: #8b2520;
+    --gold: #b8923a;
+    --mist: rgba(244, 237, 224, 0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Noto Serif TC", "Cormorant Garamond", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.8;
+    overflow-x: hidden;
+    position: relative;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(183, 62, 58, 0.04) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(74, 107, 74, 0.05) 0%, transparent 40%);
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ── Opening 開篇封面 ── */
+  .opening {
+    position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 60px 40px; overflow: hidden;
+    background: linear-gradient(180deg, var(--paper) 0%, var(--paper-warm) 100%);
+  }
+  .opening-bg {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.5;
+    background: url('images/hero.jpg') center/cover no-repeat;
+    mask-image: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 70%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 70%);
+  }
+  .opening-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, var(--paper) 95%);
+  }
+  .opening-content { position: relative; z-index: 2; text-align: center; max-width: 900px; }
+  .opening-mast {
+    display: inline-block; padding: 6px 20px; border: 1px solid var(--ink);
+    font-family: "Noto Sans TC", sans-serif; font-size: 0.7em; letter-spacing: 6px; font-weight: 500;
+    text-transform: uppercase; margin-bottom: 32px; color: var(--ink-light);
+  }
+  .opening h1 {
+    font-family: "DM Serif Display", "Noto Serif TC", serif;
+    font-size: clamp(3.5em, 9vw, 7em);
+    font-weight: 400; line-height: 1.0; letter-spacing: 4px; color: var(--ink);
+    margin-bottom: 12px; text-shadow: 2px 2px 0 rgba(244, 237, 224, 0.6);
+  }
+  .opening h1 .accent { color: var(--cinnabar); font-style: italic; }
+  .opening .verse {
+    font-family: "Noto Serif TC", serif; font-weight: 300; font-size: 1.15em;
+    color: var(--ink-light); margin: 36px auto 16px; max-width: 600px;
+    letter-spacing: 3px; line-height: 2.0;
+  }
+  .opening .verse .seal {
+    display: inline-block; background: var(--cinnabar); color: var(--paper);
+    padding: 4px 10px; margin: 0 4px; font-weight: 700; font-style: normal;
+    transform: rotate(-3deg);
+  }
+  .opening .lead {
+    font-family: "Noto Serif TC", serif; font-weight: 400; font-size: 1.05em;
+    color: var(--ink); margin: 24px 0; line-height: 2.0;
+  }
+  .opening .lead .num { font-family: "DM Serif Display", serif; font-size: 1.4em; color: var(--cinnabar); font-weight: 400; }
+  .opening-meta {
+    display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+    margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--ink-light);
+    font-family: "Noto Sans TC", sans-serif; font-size: 0.78em; letter-spacing: 2px;
+    color: var(--ink-light);
+  }
+  .opening-meta span { display: flex; align-items: center; gap: 6px; }
+  .opening-meta .dot { width: 4px; height: 4px; background: var(--cinnabar); border-radius: 50%; }
+  .scroll-hint {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    font-family: "Noto Sans TC", sans-serif; font-size: 0.7em; letter-spacing: 4px;
+    color: var(--ink-light); text-transform: uppercase;
+    animation: bob 2.5s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); opacity: 0.5; } 50% { transform: translateX(-50%) translateY(8px); opacity: 1; } }
+
+  /* ── 章節容器 ── */
+  .chapter { position: relative; padding: 100px 40px; }
+  .chapter-inner { max-width: 1180px; margin: 0 auto; position: relative; z-index: 1; }
+
+  /* 章節標題 */
+  .chap-title {
+    display: flex; align-items: baseline; gap: 20px; margin-bottom: 60px;
+    border-bottom: 2px solid var(--ink); padding-bottom: 20px;
+  }
+  .chap-title .num {
+    font-family: "DM Serif Display", serif; font-size: 4em; line-height: 1; color: var(--cinnabar);
+    font-style: italic;
+  }
+  .chap-title .text { flex: 1; }
+  .chap-title .text .zh {
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 1.8em;
+    letter-spacing: 6px; color: var(--ink);
+  }
+  .chap-title .text .en {
+    font-family: "Cormorant Garamond", serif; font-size: 0.95em; letter-spacing: 3px;
+    color: var(--ink-light); font-style: italic; text-transform: uppercase;
+  }
+  .chap-title .stamp {
+    writing-mode: vertical-rl; font-family: "Noto Serif TC", serif; font-weight: 700;
+    background: var(--cinnabar); color: var(--paper); padding: 10px 6px;
+    letter-spacing: 4px; font-size: 0.9em;
+  }
+
+  /* ── 第一章：總覽 編輯式排版 ── */
+  .chapter-overview { background: var(--paper); }
+
+  .overview-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start;
+  }
+  .overview-text .dropcap {
+    font-family: "DM Serif Display", serif; font-size: 5em; line-height: 0.85;
+    float: left; color: var(--cinnabar); padding: 8px 14px 0 0; font-style: italic;
+  }
+  .overview-text p {
+    font-size: 1.05em; line-height: 2.0; color: var(--ink-light); margin-bottom: 18px;
+    text-align: justify;
+  }
+  .overview-text p strong { color: var(--ink); font-weight: 700; }
+
+  .stats-card {
+    background: var(--ink); color: var(--paper); padding: 36px 32px;
+    position: relative; box-shadow: 12px 12px 0 var(--cinnabar);
+  }
+  .stats-card::before {
+    content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px;
+    border: 1px solid var(--paper); pointer-events: none;
+  }
+  .stats-card h3 {
+    font-family: "Noto Serif TC", serif; font-weight: 500; letter-spacing: 6px;
+    font-size: 1em; margin-bottom: 24px; padding-bottom: 14px; border-bottom: 1px solid var(--paper);
+  }
+  .stat-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-bottom: 1px dotted rgba(244,237,224,0.3); }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row .label { font-size: 0.85em; letter-spacing: 1px; }
+  .stat-row .value { font-family: "DM Serif Display", serif; font-size: 1.3em; color: var(--gold); }
+  .stats-card .footnote { margin-top: 20px; font-size: 0.7em; opacity: 0.7; letter-spacing: 1px; }
+
+  .alert-seal {
+    display: inline-flex; align-items: center; gap: 12px; margin-top: 24px;
+    background: var(--cinnabar); color: var(--paper); padding: 12px 20px;
+    font-family: "Noto Sans TC", sans-serif; font-size: 0.85em; letter-spacing: 1px;
+    transform: rotate(-1deg);
+  }
+  .alert-seal::before { content: '⚠'; font-size: 1.2em; }
+
+  /* 飯店列表 */
+  .hotels-strip {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 80px;
+    border: 1px solid var(--ink);
+  }
+  .hotel-strip {
+    padding: 28px 24px; border-right: 1px solid var(--ink); position: relative;
+    background: var(--paper);
+  }
+  .hotel-strip:last-child { border-right: none; }
+  .hotel-strip .date-stamp {
+    position: absolute; top: 16px; right: 16px; font-family: "DM Serif Display", serif;
+    font-size: 1.6em; color: var(--cinnabar); font-style: italic;
+  }
+  .hotel-strip .h-name {
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 1.1em;
+    margin-bottom: 6px; padding-right: 50px;
+  }
+  .hotel-strip .h-loc {
+    font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--jade);
+    font-size: 0.9em; margin-bottom: 12px; letter-spacing: 1px;
+  }
+  .hotel-strip .h-note { font-size: 0.82em; color: var(--ink-light); line-height: 1.7; }
+
+  /* ── 第二章：地圖 章節 ── */
+  .chapter-map {
+    background: var(--jade-deep); color: var(--paper); padding: 100px 40px;
+  }
+  .chapter-map .chap-title { border-bottom-color: var(--paper); }
+  .chapter-map .chap-title .num { color: var(--gold); }
+  .chapter-map .chap-title .text .zh { color: var(--paper); }
+  .chapter-map .chap-title .text .en { color: var(--paper); opacity: 0.7; }
+  .chapter-map .chap-title .stamp { background: var(--paper); color: var(--jade-deep); }
+
+  .map-wrap {
+    border-radius: 0; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    border: 2px solid var(--gold); position: relative;
+  }
+  #map { height: 580px; width: 100%; filter: contrast(1.05) saturate(0.9); }
+  .map-legend {
+    display: flex; gap: 24px; justify-content: center; margin-top: 30px; flex-wrap: wrap;
+    font-family: "Noto Sans TC", sans-serif; font-size: 0.8em; letter-spacing: 2px;
+  }
+  .map-legend .lg { display: flex; align-items: center; gap: 8px; }
+  .map-legend .lg::before {
+    content: ''; width: 14px; height: 14px; border-radius: 50%;
+  }
+  .map-legend .lg.d1::before { background: #e74c3c; }
+  .map-legend .lg.d2::before { background: #e67e22; }
+  .map-legend .lg.d3::before { background: #52a373; }
+  .map-legend .lg.d4::before { background: #4a8fc7; }
+  .map-legend .lg.d5::before { background: #b8923a; }
+
+  /* ── 第三章：每日行程 大報紙式 ── */
+  .chapter-days { background: var(--paper-warm); }
+  .day-feature {
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 0; margin-bottom: 100px;
+    background: var(--paper); box-shadow: 0 20px 50px rgba(45, 74, 53, 0.15);
+    border: 1px solid var(--ink);
+  }
+  .day-feature.reverse { grid-template-columns: 1.5fr 1fr; }
+  .day-feature.reverse .day-visual { order: 2; }
+  .day-feature.reverse .day-content { order: 1; }
+
+  .day-visual {
+    position: relative; min-height: 500px; overflow: hidden;
+    background-size: cover; background-position: center;
+  }
+  .day-visual::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(26,24,20,0.7) 100%);
+  }
+  .day-visual .overlay {
+    position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 28px; z-index: 2; color: var(--paper);
+  }
+  .day-visual .day-num-huge {
+    font-family: "DM Serif Display", serif; font-size: 9em; line-height: 0.8;
+    color: var(--gold); font-style: italic; opacity: 0.95;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+  .day-visual .day-name {
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 1.4em;
+    margin-top: 12px; letter-spacing: 4px;
+  }
+  .day-visual .day-date {
+    font-family: "Cormorant Garamond", serif; font-style: italic;
+    color: var(--gold); font-size: 0.95em; letter-spacing: 3px; margin-top: 4px;
+  }
+
+  .day-content { padding: 40px 36px; }
+  .day-content .theme-zh {
+    font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 1.5em;
+    letter-spacing: 3px; margin-bottom: 4px; line-height: 1.4;
+  }
+  .day-content .theme-en {
+    font-family: "Cormorant Garamond", serif; font-style: italic; color: var(--cinnabar);
+    font-size: 0.95em; letter-spacing: 2px; margin-bottom: 24px;
+  }
+  .day-content .day-summary {
+    font-size: 0.95em; color: var(--ink-light); line-height: 1.9; margin-bottom: 24px;
+    padding-bottom: 20px; border-bottom: 1px dashed var(--ink-light);
+  }
+
+  .timeline { list-style: none; }
+  .timeline li {
+    display: grid; grid-template-columns: 60px 1fr; gap: 16px; padding: 10px 0;
+    border-bottom: 1px dotted rgba(26, 24, 20, 0.15);
+  }
+  .timeline li:last-child { border-bottom: none; }
+  .timeline .t-time {
+    font-family: "DM Serif Display", serif; font-size: 1.1em; color: var(--cinnabar);
+    text-align: right; padding-top: 2px;
+  }
+  .timeline .t-event { font-size: 0.9em; line-height: 1.6; }
+  .timeline .t-event .title { font-weight: 600; color: var(--ink); display: block; }
+  .timeline .t-event .tip { color: var(--ink-light); font-size: 0.85em; margin-top: 2px; display: block; }
+  .timeline .t-event .price { color: var(--cinnabar-deep); font-weight: 600; }
+  .timeline .t-event .highlight { background: var(--gold); color: var(--ink); padding: 0 4px; font-weight: 700; }
+  .timeline .t-event .badge {
+    display: inline-block; background: var(--jade); color: var(--paper);
+    padding: 1px 6px; font-size: 0.75em; margin-right: 4px; border-radius: 2px;
+  }
+
+  .day-footer {
+    margin-top: 24px; padding-top: 18px; border-top: 2px solid var(--ink);
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+    font-family: "Noto Sans TC", sans-serif;
+  }
+  .day-footer .feat {
+    font-family: "Noto Serif TC", serif; font-style: italic; color: var(--cinnabar); font-size: 0.9em;
+  }
+  .day-footer .cost {
+    font-family: "DM Serif Display", serif; font-size: 1.1em; color: var(--ink);
+  }
+  .day-footer .cost strong { color: var(--cinnabar); font-style: italic; }
+
+  /* Day 4 雙方案 */
+  .dual-plan {
+    margin-top: 16px; padding: 16px; background: rgba(184, 146, 58, 0.08);
+    border-left: 3px solid var(--gold);
+  }
+  .dual-plan .plan-title {
+    font-family: "Noto Serif TC", serif; font-weight: 700; color: var(--cinnabar);
+    margin-bottom: 10px; font-size: 0.9em; letter-spacing: 1px;
+  }
+  .plan-card { padding: 10px; margin-bottom: 8px; background: var(--paper); border: 1px solid var(--ink); }
+  .plan-card .pc-head {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+    font-family: "Noto Sans TC", sans-serif; font-size: 0.78em; letter-spacing: 1px;
+  }
+  .plan-card .pc-tag { background: var(--ink); color: var(--paper); padding: 2px 8px; font-weight: 700; }
+  .plan-card.b .pc-tag { background: var(--cinnabar); }
+  .plan-card .pc-events { font-size: 0.82em; color: var(--ink-light); line-height: 1.7; }
+
+  /* ── 第四章：預算 三聯式 ── */
+  .chapter-budget { background: var(--paper); }
+  .budget-triptych {
+    display: grid; grid-template-columns: 2fr 1fr; gap: 50px; align-items: start;
+  }
+  .budget-table {
+    width: 100%; border-collapse: collapse; background: var(--paper);
+    border: 1px solid var(--ink);
+  }
+  .budget-table th {
+    background: var(--ink); color: var(--paper); padding: 14px 18px;
+    font-family: "Noto Serif TC", serif; font-weight: 700; letter-spacing: 3px; font-size: 0.9em;
+    text-align: left;
+  }
+  .budget-table th.r { text-align: right; }
+  .budget-table td { padding: 14px 18px; border-bottom: 1px solid var(--ink-light); font-size: 0.95em; }
+  .budget-table td.r { text-align: right; font-family: "DM Serif Display", serif; font-size: 1.1em; color: var(--cinnabar); }
+  .budget-table tr:last-child td { border-bottom: 2px double var(--ink); }
+  .budget-table .total-row td { background: var(--gold); color: var(--ink); font-weight: 700; padding: 20px 18px; }
+  .budget-table .total-row td.r { color: var(--cinnabar-deep); font-size: 1.4em; }
+
+  .pie-card {
+    background: var(--paper-warm); padding: 32px 28px;
+    border: 1px solid var(--ink); position: relative;
+  }
+  .pie-card h3 {
+    font-family: "Noto Serif TC", serif; font-weight: 700; letter-spacing: 4px;
+    font-size: 1.05em; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--ink);
+  }
+  .pie-svg { width: 100%; height: 200px; }
+  .pie-legend { list-style: none; margin-top: 16px; font-size: 0.82em; }
+  .pie-legend li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dotted var(--ink-light); }
+  .pie-legend .sw { display: inline-block; width: 10px; height: 10px; margin-right: 6px; vertical-align: middle; }
+
+  /* ── 第五章：必做清單 卡片網格 ── */
+  .chapter-booking { background: var(--jade-deep); color: var(--paper); padding: 100px 40px; }
+  .chapter-booking .chap-title { border-bottom-color: var(--paper); }
+  .chapter-booking .chap-title .num { color: var(--gold); }
+  .chapter-booking .chap-title .text .zh { color: var(--paper); }
+  .chapter-booking .chap-title .text .en { color: var(--paper); opacity: 0.7; }
+  .chapter-booking .chap-title .stamp { background: var(--paper); color: var(--jade-deep); }
+
+  .booking-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+  .booking-card {
+    background: var(--paper); color: var(--ink); padding: 28px 24px;
+    position: relative; transition: all 0.4s;
+    border: 1px solid var(--ink);
+  }
+  .booking-card.urgent { box-shadow: 6px 6px 0 var(--cinnabar); }
+  .booking-card.normal { box-shadow: 6px 6px 0 var(--gold); }
+  .booking-card:hover { transform: translate(-3px, -3px); box-shadow: 10px 10px 0 var(--cinnabar); }
+  .booking-card .index {
+    position: absolute; top: -14px; left: -14px; width: 36px; height: 36px;
+    background: var(--ink); color: var(--paper); display: flex; align-items: center; justify-content: center;
+    font-family: "DM Serif Display", serif; font-size: 1.2em;
+  }
+  .booking-card.urgent .index { background: var(--cinnabar); }
+  .booking-card h4 {
+    font-family: "Noto Serif TC", serif; font-weight: 700; letter-spacing: 1px;
+    font-size: 1.05em; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed var(--ink-light);
+  }
+  .booking-card .meta { font-size: 0.82em; color: var(--ink-light); margin-bottom: 4px; }
+  .booking-card .meta strong { color: var(--cinnabar); font-weight: 700; }
+  .booking-card .desc { font-size: 0.85em; color: var(--ink); margin-top: 10px; line-height: 1.6; font-style: italic; }
+
+  /* ── 第六章：避坑與清單 ── */
+  .chapter-tips { background: var(--paper-warm); }
+  .tips-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;
+  }
+  .tip-section h3 {
+    font-family: "Noto Serif TC", serif; font-weight: 700; letter-spacing: 4px;
+    font-size: 1.2em; margin-bottom: 24px; padding-bottom: 12px; border-bottom: 2px solid var(--ink);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .tip-section h3 .icon { font-size: 1.4em; color: var(--cinnabar); }
+  .tip-card {
+    background: var(--paper); padding: 20px 22px; margin-bottom: 14px;
+    border-left: 4px solid var(--gold);
+  }
+  .tip-card.danger { border-left-color: var(--cinnabar); }
+  .tip-card.calm { border-left-color: var(--jade); }
+  .tip-card h4 { font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 0.98em; margin-bottom: 4px; }
+  .tip-card p { font-size: 0.86em; color: var(--ink-light); line-height: 1.7; }
+  .tip-card .tag { display: inline-block; font-size: 0.7em; padding: 1px 6px; margin-right: 6px; }
+  .tip-card.danger .tag { background: var(--cinnabar); color: var(--paper); }
+  .tip-card .tag.gold { background: var(--gold); color: var(--ink); }
+  .tip-card.calm .tag { background: var(--jade); color: var(--paper); }
+
+  .checklist { list-style: none; columns: 2; column-gap: 24px; }
+  .checklist li {
+    padding: 8px 0; font-size: 0.88em; break-inside: avoid;
+    border-bottom: 1px dotted var(--ink-light);
+  }
+  .checklist li::before {
+    content: '☑'; color: var(--cinnabar); margin-right: 8px; font-weight: 700;
+  }
+  .checklist h4 {
+    font-family: "Noto Serif TC", serif; font-weight: 700; font-size: 0.95em;
+    margin: 14px 0 8px; color: var(--cinnabar); border-top: 1px solid var(--ink);
+    padding-top: 10px; break-after: avoid;
+  }
+  .checklist h4:first-of-type { border-top: none; padding-top: 0; }
+
+  /* ── 結語 ── */
+  .closing {
+    background: var(--ink); color: var(--paper); padding: 120px 40px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .closing::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.15;
+    background: url('images/hero.jpg') center/cover no-repeat;
+  }
+  .closing-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+  .closing .seal-big {
+    width: 90px; height: 90px; background: var(--cinnabar); margin: 0 auto 32px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--paper); font-family: "Noto Serif TC", serif; font-weight: 900; font-size: 1.6em;
+    letter-spacing: 4px; writing-mode: vertical-rl; padding: 10px 6px;
+    box-shadow: 0 10px 30px rgba(183, 62, 58, 0.5);
+  }
+  .closing h2 {
+    font-family: "DM Serif Display", serif; font-size: 3em; font-style: italic;
+    margin-bottom: 20px; color: var(--gold);
+  }
+  .closing p { font-size: 1.05em; line-height: 2.0; margin-bottom: 14px; }
+  .closing .poem {
+    font-family: "Noto Serif TC", serif; font-style: italic; color: var(--gold);
+    font-size: 0.95em; letter-spacing: 3px; line-height: 2.0; margin: 32px 0;
+  }
+  .closing .credit {
+    margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--paper);
+    font-family: "Cormorant Garamond", serif; font-style: italic; opacity: 0.7; font-size: 0.9em;
+  }
+  .closing .btns { margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .closing .btn {
+    display: inline-block; padding: 12px 32px; background: var(--paper); color: var(--ink);
+    font-family: "Noto Serif TC", serif; font-weight: 700; letter-spacing: 2px;
+    text-decoration: none; transition: all 0.3s; font-size: 0.9em;
+    border: 1px solid var(--paper);
+  }
+  .closing .btn.outline { background: transparent; color: var(--paper); }
+  .closing .btn:hover { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
+
+  /* ── RWD ── */
+  @media (max-width: 900px) {
+    .chapter { padding: 70px 20px; }
+    .opening { padding: 40px 20px; }
+    .overview-grid, .budget-triptych, .tips-cols { grid-template-columns: 1fr; }
+    .hotels-strip { grid-template-columns: 1fr; }
+    .hotel-strip { border-right: none; border-bottom: 1px solid var(--ink); }
+    .day-feature, .day-feature.reverse { grid-template-columns: 1fr; }
+    .day-feature.reverse .day-visual, .day-feature.reverse .day-content { order: initial; }
+    .day-visual { min-height: 280px; }
+    .booking-grid { grid-template-columns: 1fr; }
+    .chap-title { flex-wrap: wrap; }
+    .chap-title .num { font-size: 2.5em; }
+    .chap-title .stamp { writing-mode: horizontal-tb; padding: 6px 12px; }
+    .checklist { columns: 1; }
+  }
+  @media print {
+    .scroll-hint, .closing .btns { display: none; }
+    body::after { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════ 開篇封面 ════════════ -->
+<section class="opening">
+  <div class="opening-bg"></div>
+  <div class="opening-content">
+    <div class="opening-mast">A TRAVEL JOURNAL BY 路小鮮 LEO · 2026 SUMMER · 所有項目完整保留版</div>
+    <h1>桂林·<span class="accent">陽朔</span></h1>
+    <div class="verse">江作青羅帶<br>山如碧玉簪</div>
+    <p class="lead">
+      <span class="num">5</span> 日 <span class="num">4</span> 夜 的 山 水 紀 行 · 為 <strong>2大2小</strong>（<span class="seal">姐姐 8</span> 歲 · <span class="seal">妹妹 6</span> 歲）客 製
+    </p>
+    <div class="opening-meta">
+      <span><span class="dot"></span> 2026.07.05 – 07.09</span>
+      <span><span class="dot"></span> 珠海 ⇄ 桂林/陽朔</span>
+      <span><span class="dot"></span> 人均約 ¥2,160</span>
+      <span><span class="dot"></span> 龍脊梯田 · 灕江 · 遇龍河9壩</span>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL TO BEGIN · 往下捲動</div>
+</section>
+
+<!-- ════════════ 第一章：總覽 ════════════ -->
+<section class="chapter chapter-overview">
+  <div class="chapter-inner">
+    <div class="chap-title">
+      <div class="num">01</div>
+      <div class="text">
+        <div class="zh">卷 首 語</div>
+        <div class="en">Prologue · A Journey Begins</div>
+      </div>
+      <div class="stamp">山水紀行</div>
+    </div>
+
+    <div class="overview-grid">
+      <div class="overview-text">
+        <p><span class="dropcap">七</span>月之桂林，<strong>水如翠玉、山如墨染</strong>。這趟行程從<strong>龍脊梯田</strong>（龍勝縣，非陽朔）的雲海日出啟程，途經<strong>灕江四星畫舫</strong>的九馬畫山，最後在<strong>遇龍河9壩精華漂流</strong>中收束。五日四夜，從山野到城市再到江湖，所有你指定的項目——纜車、摸魚、寫真、遊船、越野車、電動車、飛拉達、探洞、9壩漂流——全部保留。</p>
+        <p>姐姐八歲，飛拉達與9壩漂流都是她的挑戰；妹妹六歲，部分項目有年齡限制，我們在每日行程中標註了<strong>紅色風險提示與替代方案</strong>。請出行前電話確認各景區最新規定。</p>
+        <p>所有時刻表按<strong>真實車次、碼頭、開放時間</strong>對齊；餐廳選本地人常去的老字號；預算已按實際兒童優惠重算。願這本小冊子，陪你走完一段難忘的山居歲月。</p>
+        <div class="alert-seal">⚠️ 重要 · 遇龍河9壩漂流需身高≥1.2m，妹妹6歲可能無法參加</div>
+      </div>
+
+      <div class="stats-card">
+        <h3>旅程數據 · AT A GLANCE</h3>
+        <div class="stat-row"><span class="label">天數</span><span class="value">5 / 4</span></div>
+        <div class="stat-row"><span class="label">人數</span><span class="value">2 + 2</span></div>
+        <div class="stat-row"><span class="label">高鐵程數</span><span class="value">3</span></div>
+        <div class="stat-row"><span class="label">核心項目</span><span class="value">9項</span></div>
+        <div class="stat-row"><span class="label">人均預算</span><span class="value">約¥2,160</span></div>
+        <div class="stat-row"><span class="label">總計（4人）</span><span class="value">約¥8,640</span></div>
+        <div class="footnote">＊不含 4 晚已預訂住宿</div>
+      </div>
+    </div>
+
+    <div class="hotels-strip">
+      <div class="hotel-strip">
+        <div class="date-stamp">05</div>
+        <div class="h-name">🏡 天空之城民宿</div>
+        <div class="h-loc">Longji · Jinkeng Dazhai</div>
+        <div class="h-note">龍脊梯田景觀房，清晨雲海盡收眼底，金坑大寨纜車步行可達。</div>
+      </div>
+      <div class="hotel-strip">
+        <div class="date-stamp">06</div>
+        <div class="h-name">🏨 詩與遠方·灕江院子</div>
+        <div class="h-loc">Guilin · Lijiang Riverside</div>
+        <div class="h-note">江景房，步行可達象鼻山、東西巷，江畔早餐儀式感拉滿。</div>
+      </div>
+      <div class="hotel-strip">
+        <div class="date-stamp">07–08</div>
+        <div class="h-name">🏨 良宿·奢網紅旅拍</div>
+        <div class="h-loc">Yangshuo · Ten-Mile Gallery</div>
+        <div class="h-note">網紅泳池，緊鄰遇龍河入口，連住兩晚免搬行李。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 第二章：地圖 ════════════ -->
+<section class="chapter chapter-map">
+  <div class="chapter-inner">
+    <div class="chap-title">
+      <div class="num">02</div>
+      <div class="text">
+        <div class="zh">山 水 輿 圖</div>
+        <div class="en">The Map · Five Days on Canvas</div>
+      </div>
+      <div class="stamp">輿圖</div>
+    </div>
+    <div class="map-wrap"><div id="map"></div></div>
+    <div class="map-legend">
+      <span class="lg d1">Day 1 · 奔赴山野</span>
+      <span class="lg d2">Day 2 · 城與市</span>
+      <span class="lg d3">Day 3 · 灕江入畫</span>
+      <span class="lg d4">Day 4 · 撒歡江湖</span>
+      <span class="lg d5">Day 5 · 遇龍收官</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 第三章：每日行程 ════════════ -->
+<section class="chapter chapter-days">
+  <div class="chapter-inner">
+    <div class="chap-title">
+      <div class="num">03</div>
+      <div class="text">
+        <div class="zh">五 日 紀 行</div>
+        <div class="en">Day by Day · The Five Chapters</div>
+      </div>
+      <div class="stamp">紀行</div>
+    </div>
+
+    <!-- DAY 1 -->
+    <article class="day-feature">
+      <div class="day-visual" style="background-image:url('images/day1-longji.jpg')">
+        <div class="overlay">
+          <div class="day-num-huge">01</div>
+          <div class="day-name">奔赴山野</div>
+          <div class="day-date">JULY 05 · SAT · 龍脊梯田（龍勝縣）</div>
+        </div>
+      </div>
+      <div class="day-content">
+        <div class="theme-zh">從 珠 海 走 向 龍 脊 千 層 梯 田</div>
+        <div class="theme-en">Zhuhai → Longji Rice Terraces</div>
+        <div class="day-summary">高鐵到桂林北（如到桂林西亦可，包車多20分鐘），再包車2.5小時到龍脊景區大門，換乘景區接駁車40分鐘進寨。下午纜車上金坑大寨「金佛頂」，傍晚摸魚+寫真。</div>
+        <ul class="timeline">
+          <li><span class="t-time">06:00</span><span class="t-event"><span class="title">起床，前往珠海站</span><span class="tip">暑期早班車人多，提早1.5小時到站</span></span></li>
+          <li><span class="t-time">07:23</span><span class="t-event"><span class="title"><span class="badge">高鐵</span> D1888 珠海→桂林北</span><span class="tip"><span class="highlight">3h38m</span> · 二等座¥248/人 · 2大¥496+2小¥248=¥744</span></span></li>
+          <li><span class="t-time">11:01</span><span class="t-event"><span class="title">抵達桂林北站</span><span class="tip">—</span></span></li>
+          <li><span class="t-time">11:15</span><span class="t-event"><span class="title">🚐 包車前往龍脊梯田</span><span class="tip">2.5h · 7座商務車 ¥400 · 可在桂林北簡餐後出發</span></span></li>
+          <li><span class="t-time">13:30</span><span class="t-event"><span class="title">服務區/車站簡餐</span><span class="tip">自備零食+麥當勞 ¥30-50/人</span></span></li>
+          <li><span class="t-time">14:00</span><span class="t-event"><span class="title">抵達龍脊景區大門</span><span class="tip">門票¥80/人（2大¥160+2小¥80=¥240）</span></span></li>
+          <li><span class="t-time">14:15</span><span class="t-event"><span class="title">🚌 景區接駁車進寨</span><span class="tip">40m · 山路蜿蜒，暈車藥備好</span></span></li>
+          <li><span class="t-time">15:00</span><span class="t-event"><span class="title"><span class="badge">纜車</span> 金坑大寨3號觀景台「金佛頂」</span><span class="tip">1h · 往返¥100/人（2大¥200+2小¥50=¥250）</span></span></li>
+          <li><span class="t-time">16:00</span><span class="t-event"><span class="title">纜車下山，步行回寨子</span><span class="tip">約15分鐘</span></span></li>
+          <li><span class="t-time">16:15</span><span class="t-event"><span class="title">🐟 稻田摸魚體驗</span><span class="tip">¥25/娃 · 民宿老闆安排 · 趁天還亮</span></span></li>
+          <li><span class="t-time">16:45</span><span class="t-event"><span class="title">👘 民族服飾寫真拍攝</span><span class="tip">¥60/套含簡單妝造 · 日落前光線最佳</span></span></li>
+          <li><span class="t-time">17:45</span><span class="t-event"><span class="title">🏡 民宿露台晚餐</span><span class="tip">梯田落日最佳觀景位</span></span></li>
+        </ul>
+        <div class="day-footer">
+          <span class="feat">🎯 纜車俯瞰千層梯田+稻田摸魚+民族寫真</span>
+          <span class="cost">本日 <strong>¥1,960</strong></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- DAY 2 -->
+    <article class="day-feature reverse">
+      <div class="day-visual" style="background-image:url('images/day2-elephant.jpg')">
+        <div class="overlay">
+          <div class="day-num-huge">02</div>
+          <div class="day-name">城市煙火</div>
+          <div class="day-date">JULY 06 · SUN · 桂林市區</div>
+        </div>
+      </div>
+      <div class="day-content">
+        <div class="theme-zh">梯 田 晨 曦 切 換 至 城 市 煙 火</div>
+        <div class="theme-en">Longji Morning → Guilin City</div>
+        <div class="day-summary">清晨看天氣追雲海，10點下山直奔桂林。午後入住「詩與遠方·灕江院子」，下午漁翁/魚鷹寫真+象鼻山，傍晚東西巷逛吃，早點回酒店休息。</div>
+        <ul class="timeline">
+          <li><span class="t-time">06:30</span><span class="t-event"><span class="title">🌄 清晨梯田觀景（自由）</span><span class="tip">民宿露台即可，不用上山</span></span></li>
+          <li><span class="t-time">08:00</span><span class="t-event"><span class="title">早餐 · 民宿</span><span class="tip">龍脊油茶、糍粑</span></span></li>
+          <li><span class="t-time">09:00</span><span class="t-event"><span class="title">寨子裡最後走走</span><span class="tip">買點梯田紅薯乾帶走</span></span></li>
+          <li><span class="t-time">10:00</span><span class="t-event"><span class="title">🚐 包車下山→桂林市區</span><span class="tip">2h · ¥350</span></span></li>
+          <li><span class="t-time">12:00</span><span class="t-event"><span class="title">午餐 · 椿記燒鵝/阿甘酒家</span><span class="tip">人均¥60-80 · 娃愛吃燒鵝</span></span></li>
+          <li><span class="t-time">13:30</span><span class="t-event"><span class="title">🏨 入住詩與遠方·灕江院子</span><span class="tip">江景房 · 午休避暑</span></span></li>
+          <li><span class="t-time">15:00</span><span class="t-event"><span class="title">💤 午休 / 酒店泳池</span><span class="tip">避開午後35°C高溫</span></span></li>
+          <li><span class="t-time">16:30</span><span class="t-event"><span class="title">🎣 漁翁/魚鷹寫真（魚音拍照）</span><span class="tip">灕江邊傳統漁翁擺拍 · ¥100-200/組</span></span></li>
+          <li><span class="t-time">17:30</span><span class="t-event"><span class="title">🐘 象鼻山公園（免門票）</span><span class="tip">桂林城徽 · 1h拍照打卡</span></span></li>
+          <li><span class="t-time">18:30</span><span class="t-event"><span class="title">🏮 東西巷 + 晚餐</span><span class="tip">桂花糕、馬蹄糕 · 米粉當晚餐</span></span></li>
+          <li><span class="t-time">20:00</span><span class="t-event"><span class="title">🌃 兩江四湖夜景（自由）</span><span class="tip">日月雙塔 · 步行免費 · 娃累可回酒店</span></span></li>
+        </ul>
+        <div class="day-footer">
+          <span class="feat">🎯 山野與城市無縫切換+漁翁寫真+午休緩衝</span>
+          <span class="cost">本日 <strong>¥1,050</strong></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- DAY 3 -->
+    <article class="day-feature">
+      <div class="day-visual" style="background-image:url('images/day3-cruise.jpg')">
+        <div class="overlay">
+          <div class="day-num-huge">03</div>
+          <div class="day-name">灕江入畫</div>
+          <div class="day-date">JULY 07 · MON · 灕江四星遊船</div>
+        </div>
+      </div>
+      <div class="day-content">
+        <div class="theme-zh">四 小 時 船 行 畫 卷 · 桂 林 之 魂</div>
+        <div class="theme-en">The Four-Hour Li River Cruise</div>
+        <div class="day-summary">竹江碼頭登船（四星船專用碼頭），9點出發全程4小時經典段，船上含自助午餐。下午抵陽朔入住良宿，傍晚逛西街。</div>
+        <ul class="timeline">
+          <li><span class="t-time">07:30</span><span class="t-event"><span class="title">早餐 · 灕江院子</span><span class="tip">江景早餐</span></span></li>
+          <li><span class="t-time">08:00</span><span class="t-event"><span class="title">🚕 打車去竹江碼頭</span><span class="tip">50m · ¥50-60 · 四星船專用碼頭</span></span></li>
+          <li><span class="t-time">09:00</span><span class="t-event"><span class="title"><span class="badge">遊船</span> 四星灕江精華段</span><span class="tip"><span class="highlight">4h</span> · 竹江→陽朔 · ¥360-400/人含午餐</span></span></li>
+          <li><span class="t-time">—</span><span class="t-event"><span class="title">九馬畫山、黃布倒影</span><span class="tip">20元背景 · 上艙加¥50-80視野更好</span></span></li>
+          <li><span class="t-time">13:00</span><span class="t-event"><span class="title">抵達陽朔龍頭山碼頭</span><span class="tip">打車¥15到酒店</span></span></li>
+          <li><span class="t-time">13:30</span><span class="t-event"><span class="title">🏨 入住良宿·奢網紅旅拍酒店</span><span class="tip">兩晚連住 · 免搬行李</span></span></li>
+          <li><span class="t-time">14:00</span><span class="t-event"><span class="title">💤 午休 / 酒店泳池玩水</span><span class="tip">4小時船程後娃需要休息</span></span></li>
+          <li><span class="t-time">16:30</span><span class="t-event"><span class="title">🛍️ 陽朔西街閒逛</span><span class="tip">傍晚涼快再出門</span></span></li>
+          <li><span class="t-time">18:00</span><span class="t-event"><span class="title">晚餐 · 大師傅啤酒魚</span><span class="tip">人均¥80-120 · 問清時價再點</span></span></li>
+          <li><span class="t-time">20:00</span><span class="t-event"><span class="title">🌙 印象·劉三姐（不推薦帶娃）</span><span class="tip">¥198起 · 22:00結束+蚊蟲多 · 8歲以下不建議</span></span></li>
+        </ul>
+        <div class="day-footer">
+          <span class="feat">🎯 全家人都會震撼的灕江畫卷+午休緩衝</span>
+          <span class="cost">本日 <strong>¥1,820</strong></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- DAY 4 -->
+    <article class="day-feature reverse">
+      <div class="day-visual" style="background-image:url('images/day4-gallery.jpg')">
+        <div class="overlay">
+          <div class="day-num-huge">04</div>
+          <div class="day-name">陽朔撒歡</div>
+          <div class="day-date">JULY 08 · TUE · 戶外體驗日</div>
+        </div>
+      </div>
+      <div class="day-content">
+        <div class="theme-zh">越 野 車 + 電 動 車 + 飛 拉 達 + 探 洞</div>
+        <div class="theme-en">ATV · E-Bike · Via Ferrata · Cave</div>
+        <div class="day-summary">上午越野車+十里畫廊電動車（子母車）撒野，下午飛拉達（姐姐）+探洞（全家）。晚上8點搶次日漂流票！</div>
+        <ul class="timeline">
+          <li><span class="t-time">08:00</span><span class="t-event"><span class="title">早餐 · 酒店</span></li>
+          <li><span class="t-time">08:30</span><span class="t-event"><span class="title"><span class="badge">越野</span> 越野車ATV體驗</span><span class="tip">1h · ¥150-200/車 · <span style="color:var(--cinnabar)">⚠️ 噪音大+無兒童座椅，6歲娃慎選</span></span></span></li>
+          <li><span class="t-time">09:45</span><span class="t-event"><span class="title"><span class="badge">騎行</span> 十里畫廊電動車（子母車）</span><span class="tip">1.5h · ¥60-80/天 · 爸爸載妹妹、媽媽載姐姐</span></span></li>
+          <li><span class="t-time">11:15</span><span class="t-event"><span class="title">還車 · 農家菜午餐</span><span class="tip">人均¥50-60</span></span></li>
+          <li><span class="t-time">12:30</span><span class="t-event"><span class="title">🏨 酒店午休 / 泳池</span><span class="tip">避下午高溫 · 娃補充體力</span></span></li>
+          <li><span class="t-time">14:30</span><span class="t-event"><span class="title"><span class="badge">攀岩</span> 飛拉達（姐姐，需身高≥1.2m）</span><span class="tip">1.5h · ¥298/人 · 金貓山初級線</span></span></li>
+          <li><span class="t-time">14:30</span><span class="t-event"><span class="title">👧 妹妹同步：酒店泳池/西街手工坊</span><span class="tip">媽媽或爸爸輪流陪妹妹</span></span></li>
+          <li><span class="t-time">16:00</span><span class="t-event"><span class="title"><span class="badge">探洞</span> 月亮水岩/金水岩探洞</span><span class="tip">1.5h · ¥80-120/人 · <span style="color:var(--cinnabar)">⚠️ 黑暗+涉水，6歲娃可能害怕</span></span></span></li>
+          <li><span class="t-time">17:30</span><span class="t-event"><span class="title">🚕 返回酒店洗漱</span><span class="tip">—</span></span></li>
+          <li><span class="t-time">18:30</span><span class="t-event"><span class="title">晚餐 · 大師傅啤酒魚/謝三姐</span><span class="tip">人均¥80-120 · 蒸魚不辣娃能吃</span></span></li>
+          <li><span class="t-time">20:00</span><span class="t-event"><span class="title"><span class="highlight">⏰ 搶漂流票！公眾號「遇龍河」</span></span><span class="tip">提前綁4人身份證 · 搶次日9壩段</span></span></li>
+        </ul>
+        <div class="day-footer">
+          <span class="feat">🎯 越野車+電動車+飛拉達+探洞 · 全部保留</span>
+          <span class="cost">本日 <strong>¥1,680</strong></span>
+        </div>
+      </div>
+    </article>
+
+    <!-- DAY 5 -->
+    <article class="day-feature">
+      <div class="day-visual" style="background-image:url('images/day5-yulong.jpg')">
+        <div class="overlay">
+          <div class="day-num-huge">05</div>
+          <div class="day-name">遇龍收官</div>
+          <div class="day-date">JULY 09 · WED · 9壩漂流·返程</div>
+        </div>
+      </div>
+      <div class="day-content">
+        <div class="theme-zh">9 壩 精 華 漂 流 · 傍 晚 聯 程 歸 鄉</div>
+        <div class="theme-en">9-Dam Raft · Homebound</div>
+        <div class="day-summary">上午遇龍河9壩精華漂流（金龍橋→舊縣，約90分鐘），這是你最期待的項目。傍晚17:55從容出發返程。</div>
+
+        <div style="background:var(--cinnabar);color:var(--paper);padding:16px 20px;margin:14px 0;border-radius:8px;font-size:0.9em;line-height:1.8">
+          <strong>⚠️ 重要風險提示</strong><br>
+          遇龍河9壩（金龍橋→舊縣）通常要求身高≥1.2m且7歲以上。妹妹6歲<strong>可能無法登筏</strong>！<br>
+          <strong>替代方案：</strong>如妹妹不符合，改選「水厄底→綜合碼頭」4壩段（約50分鐘，身高≥1m即可），姐姐仍可體驗9壩（需分開行動）。<br>
+          <strong>建議：</strong>出發前電話確認遇龍河景區最新規定（0773-8822299）。
+        </div>
+
+        <ul class="timeline">
+          <li><span class="t-time">06:30</span><span class="t-event"><span class="title">退房 · 行李寄存前台</span></li>
+          <li><span class="t-time">07:00</span><span class="t-event"><span class="title">早餐 · 酒店</span></li>
+          <li><span class="t-time">07:30</span><span class="t-event"><span class="title">🚕 去金龍橋碼頭</span><span class="tip">30m · ¥40-50 · 9壩段起點</span></span></li>
+          <li><span class="t-time">08:00</span><span class="t-event"><span class="title"><span class="badge">竹筏</span> 遇龍河9壩精華漂流</span><span class="tip"><span class="highlight">金龍橋→舊縣 · 約90分鐘</span> · ¥320/雙人筏</span></span></li>
+          <li><span class="t-time">10:00</span><span class="t-event"><span class="title">舊縣碼頭返回陽朔</span><span class="tip">景區接駁車或打車</span></span></li>
+          <li><span class="t-time">10:30</span><span class="t-event"><span class="title">🛍️ 西街伴手禮採買</span><span class="tip">桂花糕、羅漢果、辣椒醬</span></span></li>
+          <li><span class="t-time">12:00</span><span class="t-event"><span class="title">午餐 · 瘦子米粉/大師傅</span><span class="tip">不辣可選</span></span></li>
+          <li><span class="t-time">13:00</span><span class="t-event"><span class="title">酒店泳池最後玩水 / 午休</span></li>
+          <li><span class="t-time">15:30</span><span class="t-event"><span class="title">🚕 前往陽朔高鐵站</span><span class="tip">40m · ¥60-80</span></span></li>
+          <li><span class="t-time">17:55</span><span class="t-event"><span class="title"><span class="badge">高鐵</span> G3706 陽朔→桂林西</span><span class="tip">20m · ¥28/人</span></span></li>
+          <li><span class="t-time">18:15</span><span class="t-event"><span class="title">抵達桂林西站，站內換乘</span><span class="tip">等車31分鐘</span></span></li>
+          <li><span class="t-time">18:46</span><span class="t-event"><span class="title"><span class="badge">高鐵</span> G3749 桂林西→珠海</span><span class="tip">3h19m · 約¥255/人（兒童半價）</span></span></li>
+          <li><span class="t-time">22:05</span><span class="t-event"><span class="title">🏠 抵達珠海站</span><span class="tip"><span class="highlight">🎉 回家！</span></span></span></li>
+        </ul>
+        <div class="day-footer">
+          <span class="feat">🎯 9壩精華漂流圓夢+從容返程</span>
+          <span class="cost">本日 <strong>¥1,950</strong></span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ════════════ 第四章：預算 ════════════ -->
+<section class="chapter chapter-budget">
+  <div class="chapter-inner">
+    <div class="chap-title">
+      <div class="num">04</div>
+      <div class="text">
+        <div class="zh">花 銷 帳 簿</div>
+        <div class="en">The Budget · Money Matters</div>
+      </div>
+      <div class="stamp">帳簿</div>
+    </div>
+
+    <div class="budget-triptych">
+      <table class="budget-table">
+        <tr><th>類 別</th><th>明 細</th><th class="r">合計（4人）</th></tr>
+        <tr><td>🚄 城際交通</td><td>去程D1888(¥744)+返程G3706/G3749(約¥1,150)</td><td class="r">¥1,894</td></tr>
+        <tr><td>🚗 當地交通</td><td>包車¥750+打車¥350+電動車¥80</td><td class="r">¥1,180</td></tr>
+        <tr><td>🏨 住宿</td><td>4晚已預訂（天空之城+灕江院子+良宿2晚）</td><td class="r">—</td></tr>
+        <tr><td>🎫 門票+活動</td><td>龍脊門票¥240+纜車¥250+遊船¥1,140+9壩漂流¥960+飛拉達¥298+探洞¥360+越野車¥300</td><td class="r">¥3,548</td></tr>
+        <tr><td>🍜 餐飲</td><td>5天×3餐，約¥70/人/天</td><td class="r">¥1,400</td></tr>
+        <tr><td>📸 其他</td><td>民族寫真¥120+漁翁寫真¥150+摸魚¥50+伴手禮¥300</td><td class="r">¥620</td></tr>
+        <tr class="total-row"><td colspan="2">總 計（不含住宿）</td><td class="r">¥8,642</td></tr>
+      </table>
+
+      <div class="pie-card">
+        <h3>開 銷 構 成</h3>
+        <svg class="pie-svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#f4ede0" stroke-width="40"/>
+          <!-- 圓環按比例分段：交通20.8%, 門票41.7%, 餐飲16.4%, 當地13.9%, 其他7.3% -->
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#1a1814" stroke-width="40"
+            stroke-dasharray="104 502" stroke-dashoffset="0" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#b73e3a" stroke-width="40"
+            stroke-dasharray="209 502" stroke-dashoffset="-104" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#b8923a" stroke-width="40"
+            stroke-dasharray="83 502" stroke-dashoffset="-313" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#4a6b4a" stroke-width="40"
+            stroke-dasharray="70 502" stroke-dashoffset="-396" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="80" fill="none" stroke="#d4a5a3" stroke-width="40"
+            stroke-dasharray="36 502" stroke-dashoffset="-466" transform="rotate(-90 100 100)"/>
+        </svg>
+        <ul class="pie-legend">
+          <li><span><span class="sw" style="background:#b73e3a"></span>門票活動</span><span>41.7%</span></li>
+          <li><span><span class="sw" style="background:#1a1814"></span>城際交通</span><span>20.8%</span></li>
+          <li><span><span class="sw" style="background:#4a6b4a"></span>當地交通</span><span>13.9%</span></li>
+          <li><span><span class="sw" style="background:#b8923a"></span>餐飲</span><span>16.4%</span></li>
+          <li><span><span class="sw" style="background:#d4a5a3"></span>其他</span><span>7.3%</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 第五章：必做預約 ════════════ -->
+<section class="chapter chapter-booking">
+  <div class="chapter-inner">
+    <div class="chap-title">
+      <div class="num">05</div>
+      <div class="text">
+        <div class="zh">必 辦 諸 事</div>
+        <div class="en">Bookings · Six Things to Lock Down</div>
+      </div>
+      <div class="stamp">必辦</div>
+    </div>
+
+    <div class="booking-grid">
+      <div class="booking-card urgent">
+        <div class="index">1</div>
+        <h4>🚄 去程 D1888</h4>
+        <div class="meta">渠道：<strong>12306 APP</strong></div>
+        <div class="meta">時間：珠海 07:23 → 桂林北 11:01</div>
+        <div class="meta">票價：<strong>¥248/人</strong> · 兒童半價</div>
+        <div class="desc">⏰ 出發前 15 天開售，現在就買！珠海到桂林唯一直達動車</div>
+      </div>
+      <div class="booking-card urgent">
+        <div class="index">2</div>
+        <h4>🚄 返程聯程</h4>
+        <div class="meta">G3706 + G3749 站內換乘 31m</div>
+        <div class="meta">陽朔 17:55 → 桂林西 → 珠海 22:05</div>
+        <div class="meta">票價：<strong>約 ¥280/人</strong>（兒童半價）</div>
+        <div class="desc">⏰ 同樣現在就買，聯程或分開兩張</div>
+      </div>
+      <div class="booking-card normal">
+        <div class="index">3</div>
+        <h4>🚢 灕江四星遊船</h4>
+        <div class="meta">渠道：飛豬 / 攜程 / 「灕江售票處」</div>
+        <div class="meta">竹江碼頭→陽朔，<strong>4 小時</strong></div>
+        <div class="meta">票價：<strong>¥360-400/人</strong>含午餐</div>
+        <div class="desc">⏰ 提前 3-7 天購買</div>
+      </div>
+      <div class="booking-card urgent">
+        <div class="index">4</div>
+        <h4>🎋 遇龍河漂流</h4>
+        <div class="meta">渠道：公眾號<strong>「遇龍河」</strong></div>
+        <div class="meta">首選：金龍橋→舊縣（9壩/90m）· 備選：水厄底4壩</div>
+        <div class="meta">票價：<strong>¥320/雙人筏</strong>（9壩）/ ¥200（4壩）</div>
+        <div class="desc">⏰ 7/8 晚 8:00 準時搶！提前綁好身份證！</div>
+      </div>
+      <div class="booking-card normal">
+        <div class="index">5</div>
+        <h4>🧗 飛拉達 + 🕳️ 銀子岩</h4>
+        <div class="meta">渠道：美團 / 攜程</div>
+        <div class="meta">金貓山初級線 + 探洞（月亮水岩/金水岩）</div>
+        <div class="meta">票價：<strong>¥298 + ¥90</strong></div>
+        <div class="desc">⏰ 飛拉達需身高≥1.2m，探洞6歲娃可能害怕</div>
+      </div>
+      <div class="booking-card normal">
+        <div class="index">6</div>
+        <h4>🚐 桂林→龍脊包車</h4>
+        <div class="meta">渠道：飛豬 / 攜程 / 小紅書</div>
+        <div class="meta">7 座商務車，往返 2 天</div>
+        <div class="meta">票價：<strong>¥350-400/車</strong></div>
+        <div class="desc">⏰ 提前 3-5 天預約，山路不建議自駕</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 第六章：避坑+清單 ════════════ -->
+<section class="chapter chapter-tips">
+  <div class="chapter-inner">
+    <div class="chap-title">
+      <div class="num">06</div>
+      <div class="text">
+        <div class="zh">避 坑 與 行 囊</div>
+        <div class="en">Tips & Packing · A Family Manual</div>
+      </div>
+      <div class="stamp">行囊</div>
+    </div>
+
+    <div class="tips-cols">
+      <div class="tip-section">
+        <h3><span class="icon">⚠️</span> 避 坑 提 醒</h3>
+        <div class="tip-card danger">
+          <h4><span class="tag">搶票</span>遇龍河9壩搶票是硬仗</h4>
+          <p>暑假旺季晚8點開搶，9壩段（金龍橋→舊縣）最熱門！手慢幾秒就沒了！搶不到改搶水厄底4壩段。電話：0773-8822299。</p>
+        </div>
+        <div class="tip-card danger">
+          <h4><span class="tag">身高</span>妹妹6歲可能無法上9壩筏</h4>
+          <p>9壩段通常要求身高≥1.2m且7歲以上。出發前務必電話確認！如不符合，改選水厄底4壩（≥1m即可）。</p>
+        </div>
+        <div class="tip-card danger">
+          <h4><span class="tag">安全</span>ATV越野車6歲娃慎選</h4>
+          <p>無兒童安全座椅、噪音大、有翻車風險。如妹妹害怕，可在旁觀看或改為電動車加長路線。</p>
+        </div>
+        <div class="tip-card danger">
+          <h4><span class="tag">心理</span>探洞不適合膽小兒童</h4>
+          <p>完全黑暗、涉水、空間狹窄，6歲娃可能恐懼哭鬧。建議先問娃意願，或改為蝴蝶泉/圖騰古道。</p>
+        </div>
+        <div class="tip-card">
+          <h4><span class="tag gold">宰客</span>西街啤酒魚問清時價</h4>
+          <p>菜單寫「時價」先問清每斤價，推薦大師傅、謝三姐這類明碼標價連鎖店。</p>
+        </div>
+        <div class="tip-card">
+          <h4><span class="tag gold">山路</span>龍脊山路別自駕</h4>
+          <p>山路窄、彎道急、會車危險。包當地司機更安全。景區接駁車約40分鐘，暈車藥必備。</p>
+        </div>
+        <div class="tip-card calm">
+          <h4><span class="tag">避暑</span>中午11-15點盡量室內</h4>
+          <p>7月桂林中午35°C+，已為每日安排午休/泳池時段。漂流遇暴雨會停航，關注景區通知。</p>
+        </div>
+      </div>
+
+      <div class="tip-section">
+        <h3><span class="icon">🎒</span> 行 前 物 品 清 單</h3>
+        <ul class="checklist">
+          <h4>證件</h4>
+          <li>大人身份證</li>
+          <li>小朋友戶口本/身份證</li>
+          <li>12306 提前錄乘車人</li>
+          <h4>防曬防暑</h4>
+          <li>防曬霜 SPF50+</li>
+          <li>遮陽帽 + 太陽眼鏡</li>
+          <li>冰袖 / 防曬衣</li>
+          <li>便攜小風扇</li>
+          <h4>防雨</h4>
+          <li>便攜雨衣 ×4</li>
+          <li>防水手機袋</li>
+          <li>溯溪鞋 / 涼鞋</li>
+          <h4>防蚊</h4>
+          <li>強效防蚊液</li>
+          <li>防蚊貼 / 驅蚊手環</li>
+          <li>止癢膏</li>
+          <h4>衣物</h4>
+          <li>速乾T恤 ×3-4套/人</li>
+          <li>薄長褲（防蚊+防曬）</li>
+          <li>運動鞋 + 涼鞋</li>
+          <li>薄外套（空調/溶洞用）</li>
+          <li>泳衣（酒店泳池）</li>
+          <li>漂流備用衣物 ×1套/人</li>
+          <h4>藥品+其他</h4>
+          <li>退燒藥 + 腸胃藥</li>
+          <li>創可貼 + 碘伏棉棒</li>
+          <li>暈車藥（山路備用）</li>
+          <li>行動電源 + 數據線</li>
+          <li>少量現金（龍脊山裡用）</li>
+          <li>兒童零食（高鐵+遊船）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 結語 ════════════ -->
+<section class="closing">
+  <div class="closing-content">
+    <div class="seal-big">山水紀行</div>
+    <h2>A Journey Awaits</h2>
+    <p>願這本小冊子，陪你走完一段難忘的山居歲月。</p>
+    <div class="poem">願你們在灕江的晨霧裡醒來<br>在龍脊的星空下入睡<br>在遇龍河的竹筏上，記住這個夏天</div>
+    <p style="opacity:0.8; font-size:0.9em;">以上信息基於公開資料整理。D2368已停運，實際車次為D1888。龍脊梯田位於龍勝縣（非陽朔），實際票價、預約政策、兒童身高限制以各景區/平台官方發布為準。</p>
+    <div class="btns">
+      <a href="#" class="btn" onclick="window.print();return false">🖨️ 列印行程</a>
+      <a href="#" class="btn outline" onclick="alert('提示：可在美團搜尋「桂林」「陽朔」相關餐飲和門票，提前領券下單更划算！')">🎁 領美團優惠券</a>
+    </div>
+    <div class="credit">© 2026 路小鮮 Leo · AI Travel Concierge · Made with ❤️ for the family trip</div>
+  </div>
+</section>
+
+<!-- ════════════ MAP SCRIPT ════════════ -->
+<script src="https://map.qq.com/api/gljs?v=1&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77"></script>
+<script>
+(function() {
+  const dayPois = [
+    { day: 1, pois: [
+      { name: '珠海站（出發）', lat: 22.218, lng: 113.544 },
+      { name: '桂林北站', lat: 25.32879, lng: 110.30277 },
+      { name: '龍脊梯田金坑大寨', lat: 25.80771, lng: 110.15456 },
+    ]},
+    { day: 2, pois: [
+      { name: '詩與遠方·灕江院子', lat: 25.28484, lng: 110.30358 },
+      { name: '象鼻山公園', lat: 25.26755, lng: 110.29658 },
+    ]},
+    { day: 3, pois: [
+      { name: '竹江碼頭（四星船專用）', lat: 25.14519, lng: 110.43341 },
+      { name: '陽朔西街', lat: 24.77505, lng: 110.49488 },
+      { name: '良宿·奢網紅旅拍', lat: 24.72948, lng: 110.49780 },
+    ]},
+    { day: 4, pois: [
+      { name: '十里畫廊', lat: 24.73400, lng: 110.48674 },
+      { name: '金貓山飛拉達', lat: 24.74165, lng: 110.49400 },
+    ]},
+    { day: 5, pois: [
+      { name: '遇龍河·水厄底碼頭', lat: 24.74225, lng: 110.47139 },
+      { name: '銀子岩', lat: 24.618, lng: 110.429 },
+      { name: '陽朔高鐵站', lat: 24.96202, lng: 110.56658 },
+      { name: '桂林西站（換乘）', lat: 25.399, lng: 110.245 },
+    ]},
+  ];
+
+  const colors = { 1: '#b73e3a', 2: '#e67e22', 3: '#52a373', 4: '#4a8fc7', 5: '#b8923a' };
+  const allPois = [], allPaths = [];
+  let idx = 0;
+
+  dayPois.forEach(dp => {
+    const pts = [];
+    dp.pois.forEach(p => {
+      allPois.push({
+        id: String(idx), styleId: 'd'+dp.day,
+        position: new TMap.LatLng(p.lat, p.lng),
+        properties: { title: p.name, day: dp.day, color: colors[dp.day] }
+      });
+      pts.push(new TMap.LatLng(p.lat, p.lng));
+      idx++;
+    });
+    if (pts.length >= 2) allPaths.push({ id: 'p'+dp.day, styleId: 's'+dp.day, paths: pts });
+  });
+
+  const map = new TMap.Map('map', { center: new TMap.LatLng(25.0, 110.35), zoom: 10, baseMap: { type: 'vector' } });
+  const ms = {}, ps = {};
+  for (let d = 1; d <= 5; d++) {
+    ms['d'+d] = new TMap.MarkerStyle({
+      width: 32, height: 32, anchor: { x: 16, y: 16 },
+      src: 'data:image/svg+xml,' + encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"><circle cx="16" cy="16" r="14" fill="'+colors[d]+'" stroke="#f4ede0" stroke-width="3"/><text x="16" y="21" text-anchor="middle" fill="#f4ede0" font-size="14" font-weight="bold" font-family="DM Serif Display">'+d+'</text></svg>'
+      )
+    });
+    ps['s'+d] = new TMap.PolylineStyle({ color: colors[d], width: 4, borderWidth: 0, lineCap: 'round', dashArray: [10, 6] });
+  }
+  new TMap.MultiMarker({ map, styles: ms, geometries: allPois });
+  new TMap.MultiPolyline({ map, styles: ps, geometries: allPaths });
+  const info = new TMap.InfoWindow({ map, offset: { x: 0, y: -32 } });
+  map.on('click', evt => {
+    const m = evt.geometry;
+    if (m && m.properties) {
+      info.open(); info.setPosition(m.position);
+      info.setContent('<div style="padding:8px 14px;font-size:13px;font-weight:600;background:#f4ede0;color:#1a1814;border:1px solid #1a1814">'+
+        '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+m.properties.color+';margin-right:6px"></span>'+
+        'Day '+m.properties.day+' · '+m.properties.title+'</div>');
+    } else info.close();
+  });
+  const bounds = new TMap.LatLngBounds();
+  allPois.forEach(p => bounds.extend(p.position));
+  map.fitBounds(bounds, { padding: 60 });
+})();
+</script>
+</body>
+</html>

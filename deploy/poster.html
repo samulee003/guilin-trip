@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂林五日 · 煙雨親子遊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:"Noto Serif TC",serif;
+    background:#1a1f1a;
+    color:#e8e3d3;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  .poster{
+    max-width:680px;
+    margin:0 auto;
+    background:linear-gradient(180deg,#1a1f1a 0%,#232a23 100%);
+    padding:48px 32px 64px;
+    position:relative;
+  }
+  .poster::before{
+    content:"";
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    background-image:
+      radial-gradient(circle at 20% 30%,rgba(74,93,58,0.08) 0%,transparent 40%),
+      radial-gradient(circle at 80% 70%,rgba(45,62,42,0.1) 0%,transparent 50%);
+    pointer-events:none;
+  }
+  .header{
+    text-align:center;
+    margin-bottom:48px;
+    position:relative;
+    z-index:1;
+  }
+  .subtitle-top{
+    font-family:"DM Mono",monospace;
+    font-size:11px;
+    letter-spacing:0.3em;
+    color:#8a9b6e;
+    margin-bottom:16px;
+  }
+  .main-title{
+    font-family:"Cormorant Garamond",serif;
+    font-size:48px;
+    font-weight:500;
+    line-height:1.1;
+    color:#e8e3d3;
+    margin-bottom:8px;
+  }
+  .main-title .accent{
+    font-style:italic;
+    color:#c9a961;
+  }
+  .date-strip{
+    font-family:"DM Mono",monospace;
+    font-size:13px;
+    color:#8a9b6e;
+    margin-top:16px;
+    letter-spacing:0.1em;
+  }
+  .divider{
+    width:60px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#c9a961,transparent);
+    margin:24px auto;
+  }
+  .quote{
+    font-family:"Cormorant Garamond",serif;
+    font-style:italic;
+    font-size:15px;
+    color:#a8b496;
+    text-align:center;
+    margin:0 auto 48px;
+    max-width:480px;
+    line-height:1.7;
+  }
+  .days{
+    display:grid;
+    gap:0;
+    position:relative;
+    z-index:1;
+  }
+  .day{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:20px;
+    padding:28px 0;
+    border-bottom:0.5px solid rgba(138,155,110,0.15);
+    position:relative;
+  }
+  .day:last-child{border-bottom:none}
+  .day-no{
+    font-family:"Cormorant Garamond",serif;
+    font-size:48px;
+    font-weight:500;
+    color:#c9a961;
+    line-height:1;
+    text-align:right;
+  }
+  .day-no::after{
+    content:"";
+    display:block;
+    width:2px;
+    height:24px;
+    background:#c9a961;
+    margin:8px auto 0;
+  }
+  .day-content{padding-top:4px}
+  .day-meta{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom:8px;
+    flex-wrap:wrap;
+  }
+  .day-date{
+    font-family:"DM Mono",monospace;
+    font-size:11px;
+    color:#8a9b6e;
+    letter-spacing:0.1em;
+  }
+  .day-tag{
+    font-size:10px;
+    padding:3px 8px;
+    border-radius:3px;
+    font-weight:500;
+    letter-spacing:0.05em;
+  }
+  .tag-rain{background:rgba(226,75,74,0.15);color:#e24b4a;border:0.5px solid rgba(226,75,74,0.3)}
+  .tag-mid{background:rgba(186,117,23,0.15);color:#ef9f27;border:0.5px solid rgba(186,117,23,0.3)}
+  .tag-best{background:rgba(29,158,117,0.15);color:#5DCAA5;border:0.5px solid rgba(29,158,117,0.3)}
+  .tag-cloud{background:rgba(29,158,117,0.15);color:#5DCAA5;border:0.5px solid rgba(29,158,117,0.3)}
+  .day-title{
+    font-family:"Noto Serif TC",serif;
+    font-size:22px;
+    font-weight:700;
+    color:#e8e3d3;
+    margin-bottom:6px;
+  }
+  .day-subtitle{
+    font-family:"Cormorant Garamond",serif;
+    font-size:14px;
+    color:#a8b496;
+    font-style:italic;
+    margin-bottom:14px;
+  }
+  .day-activities{
+    display:grid;
+    gap:8px;
+    margin-bottom:12px;
+  }
+  .activity{
+    display:grid;
+    grid-template-columns:60px 1fr;
+    gap:12px;
+    font-size:13px;
+    color:#c9c5b3;
+    line-height:1.5;
+  }
+  .activity-time{
+    font-family:"DM Mono",monospace;
+    font-size:11px;
+    color:#8a9b6e;
+    padding-top:2px;
+  }
+  .activity-name{color:#e8e3d3}
+  .booked-badge{
+    font-size:9px;
+    padding:1px 6px;
+    background:rgba(29,158,117,0.2);
+    color:#5DCAA5;
+    border-radius:2px;
+    margin-left:6px;
+    font-weight:500;
+  }
+  .day-budget{
+    font-family:"DM Mono",monospace;
+    font-size:11px;
+    color:#8a9b6e;
+    padding-top:8px;
+    border-top:0.5px solid rgba(138,155,110,0.1);
+  }
+  .day-budget strong{color:#c9a961;font-weight:500}
+  .footer{
+    margin-top:48px;
+    padding-top:32px;
+    border-top:0.5px solid rgba(138,155,110,0.2);
+    text-align:center;
+    position:relative;
+    z-index:1;
+  }
+  .footer-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+    margin-bottom:32px;
+  }
+  .stat-num{
+    font-family:"Cormorant Garamond",serif;
+    font-size:32px;
+    font-weight:500;
+    color:#c9a961;
+    line-height:1;
+  }
+  .stat-label{
+    font-size:10px;
+    color:#8a9b6e;
+    letter-spacing:0.2em;
+    margin-top:6px;
+  }
+  .footer-line{
+    font-family:"Cormorant Garamond",serif;
+    font-style:italic;
+    font-size:13px;
+    color:#8a9b6e;
+    line-height:1.6;
+  }
+  .footer-meta{
+    font-family:"DM Mono",monospace;
+    font-size:10px;
+    color:#5f6e4f;
+    margin-top:16px;
+    letter-spacing:0.1em;
+  }
+  .vietnamese-mark{
+    position:absolute;
+    top:32px;
+    right:32px;
+    font-family:"DM Mono",monospace;
+    font-size:9px;
+    color:#5f6e4f;
+    letter-spacing:0.2em;
+    z-index:1;
+  }
+  .stamp{
+    position:absolute;
+    bottom:64px;
+    right:32px;
+    width:80px;
+    height:80px;
+    border:1.5px solid #c9a961;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transform:rotate(-12deg);
+    z-index:1;
+    opacity:0.7;
+  }
+  .stamp-text{
+    font-family:"Noto Serif TC",serif;
+    font-size:10px;
+    color:#c9a961;
+    text-align:center;
+    font-weight:700;
+    letter-spacing:0.1em;
+    line-height:1.2;
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="vietnamese-mark">VII · 2026 · GUILIN</div>
+
+  <div class="header">
+    <div class="subtitle-top">A FAMILY TRAVEL JOURNAL</div>
+    <h1 class="main-title">烟雨桂林 <span class="accent">五日记</span></h1>
+    <div class="date-strip">JULY V — IX · MMXXVI</div>
+    <div class="divider"></div>
+    <p class="quote">「江山留勝跡，我輩復登臨。」<br><span style="font-size:12px;color:#8a9b6e;font-style:normal">— 孟浩然</span></p>
+  </div>
+
+  <div class="days">
+
+    <div class="day">
+      <div class="day-no">I</div>
+      <div class="day-content">
+        <div class="day-meta">
+          <span class="day-date">7·5 SAT</span>
+          <span class="day-tag tag-rain">大雨 23—29°C</span>
+        </div>
+        <h2 class="day-title">奔赴山野</h2>
+        <p class="day-subtitle">To the mist-veiled rice terraces</p>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">09:07</span><span class="activity-name">G3792 珠海 → 桂林西<span class="booked-badge">已订</span></span></div>
+          <div class="activity"><span class="activity-time">13:00</span><span class="activity-name">包车直達龍脊民宿 · 2h45m</span></div>
+          <div class="activity"><span class="activity-time">16:45</span><span class="activity-name">金佛頂纜車 · 摸魚 · 民族服裝</span></div>
+          <div class="activity"><span class="activity-time">19:00</span><span class="activity-name">民宿晚餐 · 夜雨梯田</span></div>
+        </div>
+        <div class="day-budget">住宿：<strong>天空之城民宿</strong> · 預算 ¥1,400</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-no">II</div>
+      <div class="day-content">
+        <div class="day-meta">
+          <span class="day-date">7·6 SUN</span>
+          <span class="day-tag tag-rain">暴雨→大雨 21—27°C</span>
+        </div>
+        <h2 class="day-title">暴雨撤離</h2>
+        <p class="day-subtitle">Riding out the storm indoors</p>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">07:00</span><span class="activity-name">民宿早餐 · 雲海觀景</span></div>
+          <div class="activity"><span class="activity-time">08:00+</span><span class="activity-name">等雨小下山 · 司機慢行</span></div>
+          <div class="activity"><span class="activity-time">11:00</span><span class="activity-name">桂林博物館 · 免費室內</span></div>
+          <div class="activity"><span class="activity-time">17:30</span><span class="activity-name">東西巷晚餐 · 兩江四湖夜景</span></div>
+        </div>
+        <div class="day-budget">住宿：<strong>詩與遠方·灕江院子</strong> · 預算 ¥600</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-no">III</div>
+      <div class="day-content">
+        <div class="day-meta">
+          <span class="day-date">7·7 MON</span>
+          <span class="day-tag tag-mid">中雨→小雨 22—28°C</span>
+        </div>
+        <h2 class="day-title">烟雨漓江</h2>
+        <p class="day-subtitle">A four-star passage on the river</p>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">08:00</span><span class="activity-name">打車 → 竹江碼頭</span></div>
+          <div class="activity"><span class="activity-time">09:00</span><span class="activity-name">四星漓江遊船 4h<span class="booked-badge">已订</span></span></div>
+          <div class="activity"><span class="activity-time">14:00</span><span class="activity-name">入住陽朔良宿 · 午休泳池</span></div>
+          <div class="activity"><span class="activity-time">18:00</span><span class="activity-name">西街閒逛 · 啤酒魚</span></div>
+        </div>
+        <div class="day-budget">住宿：<strong>良宿·奢</strong> · 預算 ¥800</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-no">IV</div>
+      <div class="day-content">
+        <div class="day-meta">
+          <span class="day-date">7·8 TUE</span>
+          <span class="day-tag tag-mid">小雨→中雨 22—30°C</span>
+        </div>
+        <h2 class="day-title">陽朔撒歡</h2>
+        <p class="day-subtitle">A morning of adventure, an afternoon of rest</p>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">08:00</span><span class="activity-name">飛拉達攀岩（姐姐）· 妹妹泳池</span></div>
+          <div class="activity"><span class="activity-time">09:30</span><span class="activity-name">十里畫廊電動車</span></div>
+          <div class="activity"><span class="activity-time">11:30</span><span class="activity-name">ATV 越野雙人車</span></div>
+          <div class="activity"><span class="activity-time">20:00</span><span class="activity-name">搶遇龍河漂流票！</span></div>
+        </div>
+        <div class="day-budget">住宿：<strong>良宿·奢</strong> · 預算 ¥1,100</div>
+      </div>
+    </div>
+
+    <div class="day">
+      <div class="day-no">V</div>
+      <div class="day-content">
+        <div class="day-meta">
+          <span class="day-date">7·9 WED</span>
+          <span class="day-tag tag-best">小雨→陰 24—32°C</span>
+        </div>
+        <h2 class="day-title">漂流收官</h2>
+        <p class="day-subtitle">Best weather day · 最佳天氣日</p>
+        <div class="day-activities">
+          <div class="activity"><span class="activity-time">09:00</span><span class="activity-name">遇龍河 9 壩漂流</span></div>
+          <div class="activity"><span class="activity-time">11:00</span><span class="activity-name">月亮水岩探洞</span></div>
+          <div class="activity"><span class="activity-time">15:30</span><span class="activity-name">西街伴手禮 → 高鐵站</span></div>
+          <div class="activity"><span class="activity-time">17:55</span><span class="activity-name">G3706 → G3749 → 珠海<span class="booked-badge">已订</span></span></div>
+        </div>
+        <div class="day-budget">回家！<strong>22:05 抵達珠海</strong> · 預算 ¥1,200</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-stats">
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">DAYS</div>
+      </div>
+      <div>
+        <div class="stat-num">¥5.1k</div>
+        <div class="stat-label">BUDGET</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">SOULS</div>
+      </div>
+    </div>
+    <p class="footer-line">When the mountains wear clouds,<br>the soul finds its quiet song.</p>
+    <div class="footer-meta">DESIGNED FOR LEO · 2026 · 煙雨桂林</div>
+  </div>
+
+  <div class="stamp">
+    <div class="stamp-text">LUO<br>XIAO<br>XIAN</div>
+  </div>
+
+</div>
+</body>
+</html>

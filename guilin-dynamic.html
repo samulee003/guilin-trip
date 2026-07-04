@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂林陽朔 5 日 · 動態行程</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+TC:wght@400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   DESIGN READ · VARIANCE 6 / MOTION 4 / DENSITY 4
+   國家地理 × 孤獨星球 編輯式旅行指南
+   配色：墨綠 × 晨霧米白 × 燙金（避免 LLM 默認的米黃+黃銅系）
+   ============================================================ */
+
+:root {
+  --paper:    #f0ece1;    /* 晨霧米白 */
+  --paper-2:  #e8e2d1;    /* 較深米色 */
+  --ink:      #1f2421;    /* 墨綠黑（不用純黑）*/
+  --ink-soft: #4a4f48;    /* 副文本 */
+  --moss:     #3d4a3d;    /* 苔蘚綠（主色）*/
+  --moss-d:   #2a3329;    /* 深苔蘚 */
+  --jade:     #5a7a6a;    /* 淡玉色（強調）*/
+  --cinnabar: #a83c2f;    /* 朱砂紅（高亮用，慎用）*/
+  --gold:     #8a6d3b;    /* 古銅金 */
+  --rule:     #1f242114;  /* 細線 */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* 紙張紋理：用 SVG noise filter 疊加 */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.14 0 0 0 0 0.13 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* ============================================================
+   OPENING · 編輯式開篇
+   不是「居中 hero + CTA」，而是「雜誌封面+索引條」
+   ============================================================ */
+.opening {
+  position: relative;
+  min-height: 92dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--moss-d);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.opening-art {
+  position: relative;
+  background:
+    linear-gradient(135deg, rgba(31, 36, 33, 0.55) 0%, rgba(31, 36, 33, 0.2) 100%),
+    url('https://images.unsplash.com/photo-1537531383496-f4749b8032cf?w=1200&q=80') center/cover no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px 40px;
+  min-height: 400px;
+}
+
+.opening-art .photo-credit {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 225, 0.6);
+  border-top: 1px solid rgba(240, 236, 225, 0.3);
+  padding-top: 10px;
+  margin-top: 16px;
+  max-width: 240px;
+  line-height: 1.5;
+}
+
+.opening-text {
+  padding: 48px 40px 48px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.opening-mast {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 225, 0.55);
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.opening-title {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 900;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+
+.opening-title em {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--jade);
+  font-size: 1.1em;
+}
+
+.departure-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  background: rgba(240, 236, 225, 0.12);
+  border: 1px solid rgba(240, 236, 225, 0.35);
+  border-radius: 100px;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--paper);
+  margin-bottom: 20px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.departure-pill .pill-dot {
+  width: 8px;
+  height: 8px;
+  background: #6db36d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(109, 179, 109, 0.3);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(109, 179, 109, 0.5); }
+  70% { box-shadow: 0 0 0 8px rgba(109, 179, 109, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(109, 179, 109, 0); }
+}
+
+.opening-byline {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(240, 236, 225, 0.78);
+  max-width: 38ch;
+  border-top: 1px solid rgba(240, 236, 225, 0.2);
+  border-bottom: 1px solid rgba(240, 236, 225, 0.2);
+  padding: 16px 0;
+  margin-bottom: 24px;
+}
+
+.opening-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(240, 236, 225, 0.55);
+}
+.opening-meta strong {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 24px;
+  color: var(--paper);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-top: 4px;
+}
+
+/* 角落印章 */
+.stamp {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 64px;
+  height: 64px;
+  border: 1px solid rgba(240, 236, 225, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--paper);
+  transform: rotate(-8deg);
+}
+
+/* ============================================================
+   DAY 快速導覽列 · sticky
+   ============================================================ */
+.day-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(240, 236, 225, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--ink);
+  padding: 10px 0;
+}
+.day-nav-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.day-nav-inner::-webkit-scrollbar { display: none; }
+.day-nav a {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 6px 12px;
+  border: 0.5px solid var(--rule);
+  border-radius: 4px;
+  white-space: nowrap;
+  transition: all 0.2s;
+  background: transparent;
+}
+.day-nav a:hover {
+  background: var(--moss);
+  color: var(--paper);
+  border-color: var(--moss);
+}
+.day-nav a.nav-w { border-color: var(--gold); color: var(--gold); }
+.day-nav a.nav-w:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+.day-nav a.nav-t { border-color: var(--jade); color: var(--jade); }
+.day-nav a.nav-t:hover { background: var(--jade); color: #fff; border-color: var(--jade); }
+.day-nav .nav-spacer { flex: 1; }
+
+/* ============================================================
+   回到頂部按鈕
+   ============================================================ */
+.back-top {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 44px;
+  height: 44px;
+  background: var(--moss-d);
+  color: var(--paper);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 100;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px -4px rgba(31, 36, 33, 0.3);
+}
+.back-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.back-top:hover {
+  transform: translateY(-3px);
+  background: var(--moss);
+}
+@media (max-width: 600px) {
+  .back-top { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 18px; }
+}
+
+/* ============================================================
+   班次選擇器 · 編輯式「資訊條」而非下拉選單
+   ============================================================ */
+.section {
+  position: relative;
+  z-index: 2;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 80px 40px;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.section-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--moss);
+}
+
+.section-title {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.section-sub {
+  font-size: 14px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* 兩個班次並排對比 — 不用下拉，給兩張票根 */
+.train-options { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+
+.train-ticket {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--rule);
+  padding: 32px 28px 28px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.2, 0.6, 0.2, 1);
+  text-align: left;
+  font-family: inherit;
+  color: var(--ink);
+  /* 票根效果：左邊虛線撕角 */
+  border-left: 1px dashed var(--rule);
+}
+
+.train-ticket::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--paper);
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+}
+
+.train-ticket::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--paper);
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+}
+
+.train-ticket:hover {
+  transform: translateY(-2px);
+  border-color: var(--moss);
+  box-shadow: 0 12px 32px -8px rgba(31, 36, 33, 0.12);
+}
+
+.train-ticket.active {
+  background: var(--moss-d);
+  color: var(--paper);
+  border-color: var(--moss-d);
+}
+.train-ticket.active::before,
+.train-ticket.active::after {
+  background: var(--moss-d);
+  border-color: var(--moss-d);
+}
+
+.ticket-no {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ticket-no .check {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: inline-block;
+  position: relative;
+}
+.train-ticket.active .check::after {
+  content: '✓';
+  position: absolute;
+  top: -7px; left: 1px;
+  font-size: 12px;
+}
+.ticket-status {
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 3px;
+  opacity: 1;
+}
+.status-booked {
+  background: var(--moss, #4a5d3a);
+  color: #f5f1e8;
+}
+.status-alt {
+  background: transparent;
+  color: currentColor;
+  opacity: 0.45;
+  border: 1px solid currentColor;
+}
+
+.ticket-route {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-family: "Cormorant Garamond", serif;
+}
+.ticket-route .city {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.ticket-route .time {
+  font-size: 28px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.ticket-route .arrow {
+  font-size: 14px;
+  opacity: 0.5;
+  margin: 0 4px;
+}
+
+.ticket-meta {
+  display: flex;
+  justify-content: space-between;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  padding-top: 16px;
+  border-top: 1px dashed currentColor;
+  margin-top: 16px;
+}
+
+.ticket-active-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--jade);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.train-ticket.active .ticket-active-bar { transform: scaleX(1); }
+
+/* 已鎖定票根 */
+.train-ticket.locked {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #fff 0%, #faf6ed 100%);
+}
+.train-ticket.locked::before,
+.train-ticket.locked::after {
+  border-color: var(--gold);
+}
+
+.locked-ribbon {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background: var(--gold);
+  color: #fff;
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  z-index: 2;
+}
+
+.train-ticket.locked .ticket-route .time {
+  color: var(--gold);
+}
+
+.train-ticket.locked.active .locked-ribbon {
+  background: var(--jade);
+}
+
+/* 班次錨點資訊條 */
+.anchor-strip {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 28px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  margin-top: 24px;
+}
+.anchor-strip .label {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+.anchor-strip .desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+.anchor-strip code {
+  font-family: "DM Mono", monospace;
+  background: var(--paper);
+  padding: 2px 6px;
+  border: 1px solid var(--rule);
+  color: var(--ink);
+}
+
+/* ============================================================
+   行程主體 · 編輯式章節
+   ============================================================ */
+.day-feature {
+  position: relative;
+  padding: 64px 0;
+  border-top: 1px solid var(--ink);
+}
+
+.day-feature:first-of-type { border-top: 0; padding-top: 24px; }
+
+.day-header {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: 40px;
+}
+
+.day-num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 96px;
+  line-height: 0.85;
+  color: var(--moss);
+  letter-spacing: -0.02em;
+}
+.day-num .label {
+  display: block;
+  font-family: "Noto Serif TC", serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+.day-meta {
+  padding-bottom: 8px;
+}
+.day-meta h3 {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+.day-meta .date {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.scenario-switcher {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.scn-btn {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border: 0.5px solid var(--border, #d3d1c7);
+  background: transparent;
+  color: var(--ink, #444441);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+}
+.scn-btn:hover { border-color: var(--moss, #4a5d3a); color: var(--moss, #4a5d3a); }
+.scn-btn.active { background: var(--moss, #4a5d3a); color: var(--paper, #f5f1e8); border-color: var(--moss, #4a5d3a); }
+.scn-hint {
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  color: var(--mist, #888780);
+  letter-spacing: 0.1em;
+  margin-left: 4px;
+}
+   每個行程卡片清楚顯示：時間 / 標籤 / 活動 / 說明 / 耗時
+   ============================================================ */
+
+/* 時段分隔線 */
+.sec-break {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 0 8px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--ink);
+  font-family: "Noto Serif TC", serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--moss);
+}
+.sec-break:first-child { padding-top: 8px; }
+
+/* 時間軸容器 */
+.timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 0;
+}
+
+/* 每張行程卡片 */
+.event {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0 18px 48px;
+  border-left: 2px solid transparent;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: all 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.event.in { opacity: 1; transform: translateX(0); }
+
+/* 左側時間線上的圓點 */
+.event::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--moss);
+  z-index: 2;
+}
+
+/* 卡片按類型著色左邊框 */
+.event.highlight { border-left-color: var(--cinnabar); }
+.event.transit   { border-left-color: var(--jade); }
+.event.meal      { border-left-color: var(--gold); }
+
+.event.highlight::before { background: var(--cinnabar); border-color: var(--cinnabar); }
+.event.transit::before   { background: var(--paper); border-color: var(--jade); border-style: dashed; }
+.event.meal::before      { background: var(--gold); border-color: var(--gold); }
+.event.booked::before    { background: var(--moss, #4a5d3a); border-color: var(--moss, #4a5d3a); border-style: solid; }
+.event.booked            { border-left-color: var(--moss, #4a5d3a); }
+
+/* 時間 — 大字突出 */
+.event .ev-time {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--moss);
+  min-width: 68px;
+  letter-spacing: -0.01em;
+}
+
+/* 標籤 + 耗時 行 */
+.event .ev-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+/* 活動類型彩色藥丸 */
+.event .ev-kind {
+  display: inline-block;
+  font-family: "Noto Serif TC", serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+.ev-kind.k-prepare   { background: #e8e2d1; color: var(--ink-soft); }
+.ev-kind.k-transit   { background: #dce7df; color: #2a4434; }
+.ev-kind.k-meal      { background: #f2ecdc; color: #6b5220; }
+.ev-kind.k-view      { background: #d6e3d8; color: #2a3f2f; }
+.ev-kind.k-exp       { background: #fae8e5; color: #8b3027; }
+.ev-kind.k-stay      { background: #dfe4e8; color: #3a4a58; }
+.ev-kind.k-rest      { background: #e6e8ed; color: #4a5060; }
+.ev-kind.k-shop      { background: #f5eedf; color: #6b4c28; }
+.ev-kind.k-arrive    { background: #f0eae0; color: #5a4630; }
+.ev-kind.k-ticket    { background: #fce8e5; color: #9b2420; font-weight: 700; }
+
+/* 耗時標籤 */
+.event .ev-dur {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  padding: 2px 8px;
+  background: var(--paper-2);
+  border-radius: 6px;
+}
+
+/* 活動標題 */
+.event .ev-title {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.event.highlight .ev-title { font-weight: 700; font-size: 18px; }
+
+/* 說明文字 */
+.event .ev-tip {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  margin-top: 2px;
+}
+
+/* 章節插畫：SVG 山巒線 */
+.mountain-divider {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin: 16px 0;
+  opacity: 0.4;
+}
+
+/* 數據卡帶（trip stats） */
+.trip-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.stat {
+  padding: 28px 24px;
+  border-right: 1px dashed var(--rule);
+}
+.stat:last-child { border-right: 0; }
+.stat .num {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--moss);
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 8px;
+}
+.stat .label {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   天氣預警面板
+   ============================================================ */
+.weather-panel {
+  margin-top: 32px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  padding: 0;
+}
+.weather-head {
+  background: var(--moss-d);
+  color: var(--paper);
+  padding: 16px 28px;
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.05em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.weather-head .updated {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+.wcell {
+  padding: 16px 12px;
+  border-right: 1px dashed var(--rule);
+  text-align: center;
+}
+.wcell:last-child { border-right: 0; }
+.wcell .wday {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.wcell .wdate {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.wcell .wcond {
+  font-size: 12px;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+.wcell .wtemp {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.wcell .wrisk {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+}
+.wrisk.high { background: #E24B4A; color: #fff; }
+.wrisk.mid   { background: #EF9F27; color: #fff; }
+.wrisk.low   { background: #1D9E75; color: #fff; }
+.wcell.best .wdate { color: var(--moss); }
+.wcell.best::after {
+  content: '★ 最佳';
+  display: block;
+  font-size: 9px;
+  color: var(--moss);
+  margin-top: 4px;
+  letter-spacing: 0.1em;
+}
+
+/* 雨天備選方案 */
+.rain-plan {
+  margin-top: 0;
+  padding: 20px 28px 24px;
+  border-top: 1px dashed var(--rule);
+  background: var(--paper-2);
+}
+.rain-plan h4 {
+  font-family: "Noto Serif TC", serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--cinnabar);
+  margin-bottom: 12px;
+  letter-spacing: 0.03em;
+}
+.rain-plan ul {
+  list-style: none;
+  padding: 0;
+}
+.rain-plan li {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  padding-left: 16px;
+  position: relative;
+}
+.rain-plan li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--cinnabar);
+}
+
+/* ============================================================
+   FOOTER · 編輯式落款
+   ============================================================ */
+.footer {
+  position: relative;
+  z-index: 2;
+  background: var(--moss-d);
+  color: var(--paper);
+  padding: 64px 40px 40px;
+  text-align: center;
+}
+.footer .quote {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 24px;
+  line-height: 1.5;
+  max-width: 32ch;
+  margin: 0 auto 24px;
+  color: var(--paper);
+}
+.footer .attrib {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 40px;
+}
+.footer .meta {
+  font-size: 12px;
+  opacity: 0.6;
+  border-top: 1px solid rgba(240, 236, 225, 0.2);
+  padding-top: 24px;
+  max-width: 60ch;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .opening { grid-template-columns: 1fr; min-height: auto; }
+  .opening-art { min-height: 280px; padding: 32px 24px; }
+  .opening-text { padding: 32px 24px; }
+  .stamp { top: 24px; right: 24px; width: 52px; height: 52px; font-size: 10px; }
+
+  .section { padding: 56px 24px; }
+  .section-head { grid-template-columns: 1fr; gap: 16px; }
+  .section-num { font-size: 40px; }
+  .section-title { font-size: 22px; }
+
+  .train-options { grid-template-columns: 1fr; }
+  .anchor-strip { grid-template-columns: 1fr; gap: 8px; padding: 16px 20px; }
+
+  .weather-grid { grid-template-columns: 1fr 1fr; }
+  .wcell { border-bottom: 1px dashed var(--rule); }
+  .wcell:nth-child(odd) { border-right: 1px dashed var(--rule); }
+  .wcell:nth-child(even) { border-right: 0; }
+  .wcell:nth-last-child(-n+2) { border-bottom: 0; }
+
+  .day-header { grid-template-columns: 1fr; gap: 16px; }
+  .day-num { font-size: 64px; }
+  .day-meta h3 { font-size: 24px; }
+
+  .event {
+    padding: 14px 0 14px 36px;
+    gap: 10px;
+  }
+  .event::before { left: -5px; top: 20px; width: 8px; height: 8px; }
+  .event .ev-time { font-size: 22px; min-width: 52px; }
+  .event .ev-title { font-size: 14px; }
+  .event.highlight .ev-title { font-size: 15px; }
+  .event .ev-tip { font-size: 11px; }
+
+  .trip-stats { grid-template-columns: 1fr 1fr; }
+  .stat { border-bottom: 1px dashed var(--rule); }
+  .stat:nth-child(odd) { border-right: 1px dashed var(--rule); }
+  .stat:nth-child(even) { border-right: 0; }
+  .stat:nth-last-child(-n+2) { border-bottom: 0; }
+  .stat .num { font-size: 36px; }
+}
+
+@media (max-width: 480px) {
+  .opening-title { font-size: 2rem; }
+  .trip-stats { grid-template-columns: 1fr; }
+  .stat { border-right: 0; }
+  .day-nav-inner { padding: 0 16px; gap: 4px; }
+  .day-nav a { font-size: 10px; padding: 5px 8px; }
+  .train-options { grid-template-columns: 1fr !important; }
+}
+
+/* 動效：進場時 subtle fade */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     開篇 · 編輯式封面
+     ============================================================ -->
+<header class="opening">
+  <div class="opening-art">
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;opacity:0.7;letter-spacing:0.1em;">No. 07 — Travel Journal</div>
+      <div class="photo-credit">Photography by 路小鮮 Leo · 灕江晨霧，攝於陽朔興坪</div>
+    </div>
+  </div>
+  <div class="opening-text">
+    <div>
+      <div class="opening-mast">
+        <span>桂林 · 陽朔 · 龍勝</span>
+        <span>VOL. III</span>
+      </div>
+      <h1 class="opening-title">山<em>水</em>紀行<br>五日四夜</h1>
+      <div class="departure-pill">
+        <span class="pill-dot"></span>
+        <span class="pill-text">G3792 珠海 09:07 出發 · 已確認</span>
+      </div>
+      <p class="opening-byline">
+        為一家四口（八歲、六歲）寫的旅行誌——從龍脊梯田的雲海，到灕江的山水畫卷，最後在遇龍河的九壩竹筏中收束。
+      </p>
+    </div>
+    <div class="opening-meta">
+      <div>Family<strong>2 + 2</strong></div>
+      <div>Dates<strong>07.05 — 07.09</strong></div>
+    </div>
+  </div>
+  <div class="stamp">山水<br>紀行</div>
+</header>
+
+<!-- Day 快速導覽列 -->
+<nav class="day-nav">
+  <div class="day-nav-inner">
+    <a href="#trainSection">🚄 車次</a>
+    <a href="#weatherSection">🌧 天氣</a>
+    <a href="#day-01">Day 1 · 奔赴山野</a>
+    <a href="#day-02">Day 2 · 暴雨撤離</a>
+    <a href="#day-03">Day 3 · 煙雨灕江</a>
+    <a href="#day-04">Day 4 · 漂流日</a>
+    <a href="#day-05">Day 5 · 收官</a>
+    <a href="#foodMap" class="nav-w">🍜 美食地圖</a>
+    <span class="nav-spacer"></span>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="border-color:var(--moss);color:var(--moss);">↑ Top</a>
+  </div>
+</nav>
+
+<!-- 回到頂部按鈕 -->
+<button class="back-top" id="backTop" aria-label="回到頂部">↑</button>
+
+<!-- ============================================================
+     班次選擇 · 兩張票根
+     ============================================================ -->
+<section class="section" id="trainSection">
+  <div class="section-head">
+    <div class="section-num">i</div>
+    <div>
+      <h2 class="section-title">來回高鐵 · 已確認</h2>
+      <p class="section-sub">
+        去程 G3792 珠海 09:07 → 桂林西 12:38 · 回程 G3706+G3749 陽朔 17:55 → 珠海 22:05 · 全部已訂鎖定
+      </p>
+    </div>
+  </div>
+
+  <div class="train-options" id="trainOptions" style="grid-template-columns: 1fr 1fr; max-width: 920px; gap: 20px;">
+    <div class="train-ticket locked active" data-arrive="12:38" data-depart="09:07" data-no="G3792">
+      <div class="locked-ribbon">去程</div>
+      <div class="ticket-no">
+        <span>G3792</span>
+        <span class="check"></span>
+        <span class="ticket-status status-booked">✓ 已訂</span>
+      </div>
+      <div class="ticket-route">
+        <div>
+          <div class="city">珠海</div>
+          <div class="time">09:07</div>
+        </div>
+        <div class="arrow">→</div>
+        <div>
+          <div class="city">桂林西</div>
+          <div class="time">12:38</div>
+        </div>
+      </div>
+      <div class="ticket-meta">
+        <span>3h 31m</span>
+        <span>二等座 ¥293/人</span>
+      </div>
+      <div class="ticket-active-bar"></div>
+    </div>
+
+    <div class="train-ticket locked active" data-no="G3706+G3749">
+      <div class="locked-ribbon" style="background: var(--moss);">回程</div>
+      <div class="ticket-no">
+        <span>G3706 → G3749</span>
+        <span class="check"></span>
+        <span class="ticket-status status-booked">✓ 已訂</span>
+      </div>
+      <div class="ticket-route" style="font-size: 0.9em;">
+        <div>
+          <div class="city">陽朔</div>
+          <div class="time">17:55</div>
+        </div>
+        <div class="arrow">→</div>
+        <div style="text-align:center;">
+          <div class="city" style="font-size:10px;color:var(--ink-soft);">桂林西換乘</div>
+          <div class="time" style="font-size:18px;color:var(--gold);">18:15</div>
+        </div>
+        <div class="arrow">→</div>
+        <div>
+          <div class="city">珠海</div>
+          <div class="time">22:05</div>
+        </div>
+      </div>
+      <div class="ticket-meta">
+        <span>4h 10m 含換乘</span>
+        <span>¥324/人</span>
+      </div>
+      <div class="ticket-active-bar"></div>
+    </div>
+  </div>
+
+  <div class="anchor-strip" style="display:none;">
+    <div class="label">錨點</div>
+    <div class="desc">
+      Day 1 行程時間 = <code id="arriveTime">12:38</code>（G3792 抵達桂林西）+ 相對偏移量。
+      <strong>Day 2–5 時間固定，不受去程影響。</strong>
+    </div>
+  </div>
+
+  <div class="trip-stats">
+    <div class="stat">
+      <span class="num">5</span>
+      <div class="label">Days</div>
+    </div>
+    <div class="stat">
+      <span class="num">52</span>
+      <div class="label">Events</div>
+    </div>
+    <div class="stat">
+      <span class="num">4</span>
+      <div class="label">Lodging</div>
+    </div>
+    <div class="stat">
+      <span class="num">9</span>
+      <div class="label">Activities</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     天氣預警面板
+     ============================================================ -->
+<section class="section" id="weatherSection" style="padding-top:0;">
+  <div class="weather-panel">
+    <div class="weather-head">
+      <span>🌧 天氣風險預警 · 4 源交叉驗證</span>
+      <span class="updated">更新於 2026-07-03 23:00 · 中國天氣網 · ⛔ 華南颱風警報生效中</span>
+    </div>
+    <div class="weather-grid">
+      <div class="wcell">
+        <div class="wday">Day 1</div>
+        <div class="wdate">7/5</div>
+        <div class="wcond">暴雨 ⚠️</div>
+        <div class="wtemp">24-28°C</div>
+        <span class="wrisk high">極高風險</span>
+      </div>
+      <div class="wcell">
+        <div class="wday">Day 2</div>
+        <div class="wdate">7/6</div>
+        <div class="wcond">暴雨 ⚠️</div>
+        <div class="wtemp">24-27°C</div>
+        <span class="wrisk high">極高</span>
+      </div>
+      <div class="wcell">
+        <div class="wday">Day 3</div>
+        <div class="wdate">7/7</div>
+        <div class="wcond">大雨→中雨</div>
+        <div class="wtemp">24-30°C</div>
+        <span class="wrisk mid">中高風險</span>
+      </div>
+      <div class="wcell">
+        <div class="wday">Day 4</div>
+        <div class="wdate">7/8</div>
+        <div class="wcond">小雨 ✓</div>
+        <div class="wtemp">25-31°C</div>
+        <span class="wrisk mid">中風險</span>
+      </div>
+      <div class="wcell best">
+        <div class="wday">Day 5</div>
+        <div class="wdate">7/9</div>
+        <div class="wcond">小雨</div>
+        <div class="wtemp">25-32°C</div>
+        <span class="wrisk low">最佳日</span>
+      </div>
+    </div>
+    <div class="rain-plan">
+      <h4>⚠️ 雨天備選方案（帶娃版 · 每項都有 Plan B · 7/3 23:00 更新 · ⛔颱風警報）</h4>
+      <ul>
+        <li><strong>Day 1 暴雨 ⛔</strong> → 華南颱風外圍影響！纜車高概率停運，改民宿露台觀雲海 · 摸魚本來就下水 · 民族服裝改室內/走廊拍 · 山路或封閉請提前確認</li>
+        <li><strong>Day 2 暴雨 ⛔</strong> → 龍脊暴雨繼續！不急著08:00走 · 等雨小再出發 · 若持續暴雨可多住一晚 · 到桂林後全程室內</li>
+        <li><strong>Day 4 小雨 ✓</strong> → 天氣比預期好！漂流機會大增 · 飛拉達C线小雨可玩 · 龍門水岩室內不受影響 · 若漂流封漂→銀子岩</li>
+        <li><strong>Day 5 小雨 ✓</strong> → 天氣最好的一天！太太上午工作 · 爸爸帶娃 · 下午旅拍+西街 · 16:30出發不趕</li>
+        <li><strong>全程必備</strong> → 輕便雨衣×4 · 速乾衣物×2套 · 防水鞋套×4 · 手機防水袋 · 長褲運動鞋(飛拉達) · 薄外套(溶洞/梯田) · 防曬乳(雨天也要!)</li>
+      </ul>
+    </div>
+  </div>
+</section><!-- 行程主體（動態渲染）-->
+<div id="itinerary"></div>
+
+<!-- ============================================================
+     美食地圖 · 按天對應
+     ============================================================ -->
+<section class="section" id="foodMap" style="padding-top:32px;">
+  <div class="section-head">
+    <div class="section-num">ii</div>
+    <div>
+      <h2 class="section-title">美食地圖 · 親子不辣版</h2>
+      <p class="section-sub">
+        每家餐廳都標註「不辣/少辣可做」和寶寶友好指數。數據來源：攜程問道 2026/7 查詢。
+      </p>
+    </div>
+  </div>
+
+  <div style="display:grid; gap:28px;">
+
+    <!-- Day 1 龍脊 -->
+    <div style="border-left:3px solid var(--gold); padding-left:20px;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:var(--moss); margin-bottom:6px;">Day 1 · 龍脊梯田</h3>
+      <p style="font-size:11px; color:var(--ink-soft); letter-spacing:0.1em; margin-bottom:14px;">民宿晚餐 · 雲海露台用餐</p>
+      <div style="display:grid; gap:10px;">
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🏠 去見山 · 露台花園觀景餐廳</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥80-100/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            金佛頂半山腰 · 180°梯田全景露台 · <strong>竹筒雞、酸湯禾花魚、拔絲荔浦芋頭（娃最愛）</strong> · 可定制清淡兒童餐 · 入住含早餐（米粉+水果+粗糧）
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🏠 遇見昕田餐廳</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥70-90/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            落地窗全景梯田 · <strong>專門提供兒童餐</strong> · 山泉水燉土雞、稻花魚 · 民宿管家可幫規劃徒步路線
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 桂林市區 -->
+    <div style="border-left:3px solid var(--jade); padding-left:20px;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:var(--moss); margin-bottom:6px;">Day 2 · 桂林市區</h3>
+      <p style="font-size:11px; color:var(--ink-soft); letter-spacing:0.1em; margin-bottom:14px;">午餐 + 東西巷晚餐 · 室內避雨</p>
+      <div style="display:grid; gap:10px;">
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🦆 椿記燒鵝（文明店/濱江店）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥60-80/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            桂林親子餐廳 No.1 · 有寶寶椅+兒童餐具 · <strong>招牌燒鵝（撕小塊）、蒸水蛋、蘋果流沙包、荔浦芋扣肉</strong> · 文明店近兩江四湖 · 濱江店落地窗看灕江 · 飯點提前取號
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🍲 璞食 · 桂北融合菜（東西巷 9 樓）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥70/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            東西巷路口 · 高空觀景陽台 · <strong>專屬兒童餐（糖醋排骨+薯條+蔬菜拼盤）</strong> · 微辣螺螄雞、番茄啤酒魚 · 下樓即正陽步行街 · 飯後步行5分鐘到兩江四湖碼頭
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🎏 桂人語（東西巷店）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥60-70/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            壯鄉風味 · <strong>免費民族小帽子給娃拍照</strong> · 五彩糯米飯娃愛吃 · 百香果排骨酸甜 · 啤酒魚可做不辣
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 陽朔 -->
+    <div style="border-left:3px solid var(--cinnabar); padding-left:20px;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:var(--moss); margin-bottom:6px;">Day 3 · 陽朔西街</h3>
+      <p style="font-size:11px; color:var(--ink-soft); letter-spacing:0.1em; margin-bottom:14px;">遊船後晚餐 · 西街步行可達</p>
+      <div style="display:grid; gap:10px;">
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🐟 大師傅金獎啤酒魚（西街總店）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥80-120/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            西街口 · 有寶寶餐椅 · <strong>選弄水骨魚/毛骨魚（無細刺）→ 註明「番茄醬香不辣」</strong> · 竹筒雞、菠蘿咕咾肉、荔浦香芋蒸排骨 · 景觀店二樓可看西街夜景
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🐟 謝三姐金獎啤酒魚（西街總店）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥80-100/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            非遺老店 · 有親子套餐 · <strong>鴨嘴魚/松鼠魚刺少 → 番茄不辣款</strong> · 竹筒雞湯、金絲香芋卷 · 菜量實在
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 4 十里畫廊 -->
+    <div style="border-left:3px solid var(--cinnabar); padding-left:20px;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:var(--moss); margin-bottom:6px;">Day 4 · 十里畫廊 · 漂流日</h3>
+      <p style="font-size:11px; color:var(--ink-soft); letter-spacing:0.1em; margin-bottom:14px;">舊縣碼頭上岸午餐 · 農家菜</p>
+      <div style="display:grid; gap:10px;">
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🏚️ 老根農家飯店（舊縣村）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥50-60/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            漂流上岸可聯繫店家接送 · <strong>遇龍河啤酒魚、田螺釀、黃燜土雞</strong> · 桂花蜂蜜茶解膩 · 老店口碑穩定 · 提前電話留座
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🏚️ 李子農家飯店（舊縣碼頭 200m）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥45-55/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            朴素農家小院 · <strong>一雞三吃（現殺土雞）、清蒸毛骨魚（無刺）</strong> · 性價比高 · 本地人常光顧
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🔥 興隆寨柴火鼎鍋飯（碼頭500m）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥50-65/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            柴火現燒 · <strong>柴火田螺釀、荔浦芋扣肉、鼎鍋米飯</strong> · 店家可接送碼頭 · 風味濃郁
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 5 陽朔收尾 -->
+    <div style="border-left:3px solid var(--moss); padding-left:20px;">
+      <h3 style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:24px; color:var(--moss); margin-bottom:6px;">Day 5 · 陽朔收尾 · 最後一碗米粉</h3>
+      <p style="font-size:11px; color:var(--ink-soft); letter-spacing:0.1em; margin-bottom:14px;">早餐米粉 + 午餐簡餐</p>
+      <div style="display:grid; gap:10px;">
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🍜 瘦子米粉（疊翠路老店）</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥10-15/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            本地人常打卡 · <strong>點單說：「鮮肉湯粉，不要辣椒、不要酸筍」</strong> · 筒骨原湯清淡 · 加鹵蛋、鍋燒 · 帶娃優先清湯煮粉
+          </p>
+        </div>
+        <div style="background:var(--paper); border:1px solid var(--rule); padding:14px 18px;">
+          <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;">
+            <strong style="font-size:14px;">🍵 西街小吃加餐</strong>
+            <span style="font-family:'DM Mono',monospace; font-size:10px; color:var(--gold);">¥20-30/人</span>
+          </div>
+          <p style="font-size:12px; color:var(--ink-soft); line-height:1.7;">
+            <strong>桂花糕、手工酸奶、馬蹄糕、糖畫</strong>（娃必吃）· 西街沿街小店都有 · 伴手禮可買桂花茶、羅漢果
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 通用提示 -->
+  <div style="margin-top:32px; padding:20px 24px; background:var(--paper-2); border:1px dashed var(--rule);">
+    <h4 style="font-family:'Noto Serif TC',serif; font-size:13px; color:var(--cinnabar); margin-bottom:10px;">⚠️ 親子用餐小貼士</h4>
+    <ul style="list-style:none; padding:0; font-size:12px; color:var(--ink-soft); line-height:1.9;">
+      <li>▸ 啤酒魚兩家都默認帶辣，下單必須主動告知「全程免辣、番茄底」</li>
+      <li>▸ 帶低齡娃優先選弄水骨魚、鴨嘴魚，避開多刺鯉魚</li>
+      <li>▸ 農家菜分量偏大，4人3菜1湯即可，避免浪費</li>
+      <li>▸ 龍脊農家菜默認微辣，點餐提前告知做不辣版本</li>
+      <li>▸ 舊縣碼頭飯點 11:30-13:00 人多，漂流前先電話留座</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     落款
+     ============================================================ -->
+<footer class="footer">
+  <p class="quote">「江山留勝跡，我輩復登臨。」</p>
+  <p class="attrib">— 孟浩然 · 與諸子登峴山</p>
+  <p class="meta">
+    本行程基於公開資料整理。<br>
+    龍脊梯田位於龍勝縣（非陽朔），實際票價、預約政策、兒童身高限制以各景區/平台官方發布為準。<br>
+    © 2026 路小鮮 Leo · A Travel Journal
+  </p>
+</footer>
+
+<script>
+// ============================================================
+// 行程數據：所有時間都是「相對於高鐵抵達桂林西的分鐘數」
+// ============================================================
+const itinerary = [
+  {
+    day: '01', label: 'Day One', title: '奔赴山野', date: '七月五日 · 週六 · 暴雨 ⛔',
+    events: [
+      { delta: -301, kind: '準備', title: '從珠海站進站', tip: '提前 1.5 小時 · 暑期人多安檢慢 · 帶雨衣' },
+      { delta: -213, kind: '車程', title: 'G3792 珠海出發 ✓已訂', tip: '09:07 發車 · 車程 3h31m · 車上吃早餐', cls: 'transit booked', useDepart: true },
+      { delta: 0,    kind: '車程', title: '抵達桂林西站', tip: '12:38 · 行程時間錨點 · 下車打傘', cls: 'transit' },
+      { delta: 7,    kind: '餐飲', title: '車站簡餐 + 買便當', tip: '12:45 · 買好路上吃的即刻上車', cls: 'meal' },
+      { delta: 22,   kind: '車程', title: '包車出發 → 龍脊梯田', tip: '13:00 · 7座商務車 ¥500-600（桂林西站起）· 直達金坑大寨停車場 · 山路約2h40m · 雨天慢10-20分鐘 · 暈車藥提前吃', cls: 'transit' },
+      { delta: 187,  kind: '住宿', title: '抵達金坑大寨 · 天空之城民宿', tip: '15:45 · check-in 放行李 · 門票 ¥80/人（車上購票，3 日通票）' },
+      { delta: 217,  kind: '景點', title: '民宿露台觀雨中雲海', tip: '16:15 · 雨天雲海反而最美 · 不用出去 · 娃休息喝水' },
+      { delta: 247,  kind: '景點', title: '金佛頂纜車（若開）', tip: '16:45 · 往返 ¥110/人 · 4人¥440 · ⚠️ 大雨大概率停運！若停運改民宿露台觀雲海 · 雨中梯田反而最美', cls: 'highlight' },
+      { delta: 307,  kind: '體驗', title: '稻田摸魚體驗', tip: '17:45 · ¥25/娃 · 民宿老闆安排 · 本來就要下水雨天更趣味 · ⚠️ 田埂濕滑穿防滑鞋 · 牽好妹妹' },
+      { delta: 337,  kind: '體驗', title: '民族服飾寫真', tip: '18:15 · ¥30/套起 · 含妝造加¥30 · 雨天改民宿室內/走廊拍 · 別有風味' },
+      { delta: 382,  kind: '餐飲', title: '民宿晚餐', tip: '19:00 · 雨天改室內餐廳 · 看不到日落但可看夜雨梯田 · 民宿含次日早餐', cls: 'meal highlight' },
+    ]
+  },
+  {
+    day: '02', label: 'Day Two', title: '暴雨撤離 · 室內避雨', date: '七月六日 · 週日 · 暴雨→大雨',
+    scenario: 'A',
+    events: [
+      { delta: 1139, kind: '景點', title: '雨中梯田雲海（民宿露台）', tip: '06:30 · 暴雨天雲海最壯觀 · 民宿露台拍照即可' },
+      { delta: 1169, kind: '餐飲', title: '早餐 · 民宿', tip: '07:00 · 龍脊油茶、糍粑 · 今日看天氣決定下山時間', cls: 'meal' },
+      { delta: 1199, kind: '體驗', title: '退房打包 · 觀察雨勢', tip: '07:30 · ⚠️ 暴雨天山路最危險！不急著走，等雨勢減小再出發 · 若持續暴雨可多住一晚' },
+      { delta: 1229, kind: '車程', title: '⚠️ 等雨小後下山 → 桂林市區', tip: '08:00+ · 約 2h40m · ¥500-700 · 暴雨時不要上路！等雨勢減小 · 司機慢行 · 娃暈車坐前排 · 若 10:00 仍暴雨就多住一晚', cls: 'transit' },
+      { delta: 1349, kind: '住宿', title: '抵達桂林 · 寄存行李', tip: '10:00+ · 詩與遠方·灕江院子 · 可寄存' },
+      { delta: 1409, kind: '景點', title: '桂林博物館（免費 · 室內）', tip: '11:00 · 免費憑證件入館 · 室內避暴雨最佳 · 有親子活動', cls: 'highlight' },
+      { delta: 1499, kind: '餐飲', title: '午餐 · 椿記燒鵝 / 阿甘酒家', tip: '12:30 · 人均 ¥60-80 · 室內餐廳 · 娃愛吃燒鵝', cls: 'meal' },
+      { delta: 1589, kind: '休息', title: '酒店午休 / 泳池', tip: '14:00 · 避午後大雨 · 娃補體力 · 室內泳池' },
+      { delta: 1709, kind: '景點', title: '象鼻山公園（免票 · 快速打卡）', tip: '16:00 · 雨小了再出門 · 30 分鐘拍照 · 帶傘 · 娃不想去可跳過' },
+      { delta: 1799, kind: '餐飲', title: '東西巷晚餐（半室內商業街）', tip: '17:30 · 有遮蔽不怕雨 · 娃可在商場裡玩' , cls: 'meal' },
+      { delta: 1889, kind: '景點', title: '兩江四湖夜景（步行免費）', tip: '19:00 · 日月雙塔 · 娃累可回酒店 · 雨大可跳過' },
+    ]
+  },
+  {
+    day: '03', label: 'Day Three', title: '煙雨灕江', date: '七月七日 · 週一 · 大雨轉中雨',
+    events: [
+      { delta: 2609, kind: '餐飲', title: '早餐 · 灕江院子', tip: '07:00 · 江景早餐 · 今日遊船不受雨影響（有船艙）', cls: 'meal' },
+      { delta: 2669, kind: '車程', title: '打車去竹江碼頭', tip: '08:00 · 40-50分鐘 · ¥80-100 · 詩與遠方→竹江碼頭約22km · 四星船專用 · 帶雨衣上下船', cls: 'transit' },
+      { delta: 2729, kind: '景點', title: '四星灕江遊船 ✓已訂', tip: '09:00 · 4 小時 · 船含自助午餐 · 看九馬畫山、20元背景 · 煙雨灕江如水墨畫', cls: 'highlight booked' },
+      { delta: 2969, kind: '車程', title: '抵達陽朔龍頭山碼頭 → 打車去酒店', tip: '13:00 · 15分鐘 · ¥15 · 龍頭山碼頭→良宿約6km · 下船穿雨衣', cls: 'transit' },
+      { delta: 2999, kind: '住宿', title: '入住良宿·奢網紅旅拍酒店 ⭐4.8', tip: '13:30 · 兩晚連住 · 免搬行李 · 頂樓無邊透明泳池！· 📸 訂房送駐店攝影師免費旅拍30分鐘 · 入選廣西美景酒店No.5' },
+      { delta: 3029, kind: '體驗', title: '📝 方案一：午休 / 泳池', tip: '14:00 · 4h 船程後娃需要休息 · 室內泳池放電 · 大人也喘口氣 · 簡單省事' },
+      { delta: 3029, kind: '體驗', title: '📝 方案二：西街旅拍寫真（精拍）', tip: '14:00 · 化妝造型 1.5-2h + 拍攝 30min · ¥300-500/組含精修 · 良宿本身是旅拍酒店可店內拍 · 16:00 黃昏前光線最佳 · 太太選' },
+      { delta: 3179, kind: '景點', title: '陽朔西街閒逛', tip: '16:30 · 打車去西街約15分鐘 ¥15-20 · 傍晚雨小再出門 · 西街有遮蔽 · 娃可吃糖畫 · 旅拍剛好收工一起逛' },
+      { delta: 3269, kind: '餐飲', title: '晚餐 · 大師傅啤酒魚', tip: '18:00 · 人均 ¥80-120 · 問清時價再點 · 蒸魚不辣娃能吃', cls: 'meal' },
+      { delta: 3389, kind: '搶票', title: '搶漂流票！公眾號「遇龍河」', tip: '20:00 · ⚠️ 搶明日 7/8 9壩段 · 提前綁 4 人身份證 · 不選時段！現場排隊先到先上 · 先查是否封漂 · 暑假手速要快', cls: 'highlight' },
+    ]
+  },
+  {
+    day: '04', label: 'Day Four', title: '陽朔全壘打 · 漂流日', date: '七月八日 · 週二 · 小雨 ✓ 天氣好轉',
+    events: [
+      { delta: 4049, kind: '餐飲', title: '早餐 · 酒店', tip: '07:00 · 今日是陽朔最精彩的一天！上午戶外→下午探洞 · 已搶好漂流票', cls: 'meal' },
+      { delta: 4109, kind: '體驗', title: '爸爸+姐姐：飛拉達 · C线叢林穿越（親子）', tip: '08:00 · C线 ¥248/人 · 1.5h · 6-60歲·需≥1.2m · 80m低空溜索·無失重感 · ⚠️ A线12+歲不適用！選親子C线 · 穿長褲運動鞋 · 備選：銀子岩', cls: 'highlight' },
+      { delta: 4109, kind: '休息', title: '媽媽+妹妹：酒店泳池 / 休息', tip: '08:00 · 妹妹下午一起探洞 · 酒店泳池放電或房間休息 · 不趕' },
+      { delta: 4199, kind: '車程', title: '匯合 → 打車去金龍橋碼頭', tip: '09:30 · 12km · 18-22分鐘 · ¥30-45 · 暑期早8-10點易堵最多30分鐘', cls: 'transit' },
+      { delta: 4259, kind: '體驗', title: '遇龍河 9 壩漂流 ⭐', tip: '10:30 · 金龍橋→舊縣 · 90分鐘 · ¥320/雙人筏×2=¥640 · ⚠️ 不選時段！現場排隊先到先上 · 暑期排隊20-40分鐘 · 身高≥1m · 若封漂→銀子岩', cls: 'highlight' },
+      { delta: 4349, kind: '體驗', title: '舊縣上岸 → 租電動車 · 十里畫廊沿河騎行', tip: '12:00 · ¥50-75/天（暑期價）· 含安全頭盔 · ⚠️ 2026/6新規：無牌車禁入十里畫廊！確認車牌+頭盔 · 小雨穿雨衣可騎 · ⚠️ 路滑減速', cls: 'highlight' },
+      { delta: 4409, kind: '餐飲', title: '午餐 · 十里畫廊沿線農家菜', tip: '13:00 · 人均 ¥50-60 · 沿河多家農家菜館 · 室內用餐', cls: 'meal' },
+      { delta: 4499, kind: '體驗', title: '龍門水岩探洞 · 全家 ¥1,327（2大2小）🐉', tip: '14:30 · 高田鎮龍門村 · ¥332/人 · 打車20-25分鐘 ¥40-55 · 有「龍」字的洞！太太指定 · 含教練+裝備+頭燈 · ⭐ 洞內不受雨影響 · 約 1.5h · [飛豬預訂](https://a.feizhu.com/43ZnRb)', cls: 'highlight' },
+      { delta: 4589, kind: '車程', title: '還電動車 → 回酒店', tip: '16:00 · 騎回租車點還車 · 打車回酒店', cls: 'transit' },
+      { delta: 4649, kind: '休息', title: '酒店休息 / 泳池', tip: '17:00 · 如果下午轉中雨正好回酒店 · 娃泳池放電 · 大人喘口氣' },
+      { delta: 4709, kind: '餐飲', title: '晚餐 · 謝三姐 / 大師傅', tip: '18:00 · 步行可達 · 蒸魚不辣娃能吃 · 慶祝陽朔全壘打日！', cls: 'meal highlight' },
+    ]
+  },
+  {
+    day: '05', label: 'Day Five', title: '慢慢收官 · 最佳天氣日', date: '七月九日 · 週三 · 小雨 ✓',
+    events: [
+      { delta: 5549, kind: '餐飲', title: '自然醒 · 早餐 · 酒店', tip: '08:00 · 最後一天不趕早 · 慢慢吃 · 五天最佳天氣！', cls: 'meal' },
+      { delta: 5609, kind: '休息', title: '太太工作 · 爸爸帶娃泳池/西街', tip: '09:00 · 太太上午有工作 · 爸爸帶兩個娃泳池放電或西街輕逛 · 不趕' },
+      { delta: 5789, kind: '餐飲', title: '午餐 · 瘦子米粉 / 西街', tip: '12:00 · 慢慢吃完最後一碗桂林米粉 · 坐著聊', cls: 'meal' },
+      { delta: 5879, kind: '體驗', title: '旅拍寫真 or 西街伴手禮', tip: '13:30 · 太太旅拍 ¥300-500（約2h→15:30）· 或全家西街買伴手禮 · 娃吃糖畫 · 不趕 · 選一個', cls: 'highlight' },
+      { delta: 5999, kind: '休息', title: '旅拍結束 · 回酒店取行李', tip: '15:30 · 旅拍或逛街後回酒店 · 換乾衣服 · 收拾行李', cls: 'rest' },
+      { delta: 6029, kind: '住宿', title: '取行李 · 退房', tip: '16:00 · 收拾行李 · check-out' },
+      { delta: 6059, kind: '車程', title: '前往陽朔高鐵站', tip: '16:30 · 30-35km · 40-55分鐘 · 網約車¥50-70 · 暑期堵車可達1h · 提前出發不趕', cls: 'transit' },
+      { delta: 6144, kind: '車程', title: 'G3706 陽朔 → 桂林西 ✓已訂', tip: '17:55→18:15 · 20 分鐘 · ¥31/人', cls: 'transit booked' },
+      { delta: 6164, kind: '車程', title: '桂林西站 · 站內換乘', tip: '18:15 · 等車約 30 分鐘 · 上洗手間', cls: 'transit' },
+      { delta: 6195, kind: '車程', title: 'G3749 桂林西 → 珠海 ✓已訂', tip: '18:46→22:05 · 3h19m · ¥293/人', cls: 'transit booked' },
+      { delta: 6394, kind: '抵達', title: '抵達珠海站 · 回家！', tip: '22:05 · 五天四夜圓滿收官 🎉', cls: 'highlight' },
+    ]
+  }
+];
+
+// ============================================================
+// Day 2 三套天氣方案（7/6 早上 06:30 查天氣後切換）
+// ============================================================
+const day2Scenarios = {
+  A: {
+    title: '暴雨撤離 · 午後下山', date: '七月六日 · 週日 · 暴雨→大雨',
+    events: [
+      { delta: 1229, kind: '景點', title: '雨中梯田雲海（民宿露台）', tip: '08:00 · 暴雨天雲海最壯觀 · 民宿露台拍照 · 娃自然醒' },
+      { delta: 1259, kind: '餐飲', title: '早餐 · 民宿', tip: '08:30 · 龍脊油茶、糍粑 · 慢慢吃', cls: 'meal' },
+      { delta: 1289, kind: '體驗', title: '梯田最後漫步 · 拍照', tip: '09:00 · 民宿周邊拍最後的梯田 · 娃在民宿玩 · 行李暫放房間不急退' },
+      { delta: 1469, kind: '餐飲', title: '民宿午餐', tip: '12:00 · 民宿吃午餐 · 吃飽再上路', cls: 'meal' },
+      { delta: 1514, kind: '住宿', title: '退房 · 行李裝車', tip: '12:45 · 吃完飯再退房 · 行李直接上包車' },
+      { delta: 1529, kind: '車程', title: '⚠️ 包車直達桂林飯店', tip: '13:00 · 約2h40m · ¥500-700（暑期溢價）· 直達詩與遠方·灕江院子 · 暴雨時不要上路！若仍暴雨就多住一晚', cls: 'transit' },
+      { delta: 1629, kind: '住宿', title: '抵達桂林 · 詩與遠方·灕江院子', tip: '15:40 · check-in · 行李入房' },
+      { delta: 1679, kind: '景點', title: '桂林博物館（快速打卡 · 免費 · 室內）', tip: '16:30 · ⚠️ 僅剩30分鐘！09:00-17:00 · 免費憑證件 · 快看重點 · 室內避暴雨', cls: 'highlight' },
+      { delta: 1799, kind: '餐飲', title: '東西巷晚餐（半室內商業街）', tip: '17:30 · 有遮蔽不怕雨 · 娃可逛商場', cls: 'meal' },
+      { delta: 1829, kind: '景點', title: '象鼻山公園（免票 · 快速打卡）', tip: '18:00 · 30分鐘拍照 · 帶傘 · 雨大可跳過' },
+      { delta: 1889, kind: '景點', title: '兩江四湖夜景（步行免費）', tip: '19:00 · 日月雙塔 · 娃累可回酒店 · 雨大可跳過' },
+    ]
+  },
+  B: {
+    title: '小雨慢遊 · 午後下山', date: '七月六日 · 週日 · 小雨',
+    events: [
+      { delta: 1229, kind: '景點', title: '雨中梯田雲海（民宿露台）', tip: '08:00 · 雨中雲海 · 民宿露台拍照 · 娃自然醒' },
+      { delta: 1259, kind: '餐飲', title: '早餐 · 民宿', tip: '08:30 · 龍脊油茶、糍粑', cls: 'meal' },
+      { delta: 1289, kind: '體驗', title: '纜車下山告別梯田', tip: '09:00 · 若纜車開則坐纜車下山 · 不開則梯田漫步 · 小雨山路可行 · 行李先放房間' },
+      { delta: 1469, kind: '餐飲', title: '民宿午餐', tip: '12:00 · 吃飽再上路', cls: 'meal' },
+      { delta: 1514, kind: '住宿', title: '退房 · 行李裝車', tip: '12:45 · 吃完飯再退房 · 行李直接上包車' },
+      { delta: 1529, kind: '車程', title: '包車直達桂林飯店', tip: '13:00 · 約2h40m · ¥500-700（暑期溢價）· 直達詩與遠方·灕江院子 · 沿途風景好', cls: 'transit' },
+      { delta: 1629, kind: '住宿', title: '抵達桂林 · 詩與遠方·灕江院子', tip: '15:40 · check-in' },
+      { delta: 1679, kind: '景點', title: '蘆笛岩（室內溶洞 ¥110/人）', tip: '16:30 · 桂林最經典溶洞 · 全程平坦有燈光 · 室內不受雨影響 · 娃能走 · 約 1.5h', cls: 'highlight' },
+      { delta: 1799, kind: '餐飲', title: '東西巷晚餐', tip: '17:30 · 半室內 · 娃可逛商場', cls: 'meal' },
+      { delta: 1829, kind: '景點', title: '象鼻山公園（免票）', tip: '18:00 · 桂林地標 · 快速拍照' },
+      { delta: 1889, kind: '景點', title: '兩江四湖夜景（步行免費）', tip: '19:00 · 日月雙塔 · 小雨有倒影更美' },
+    ]
+  },
+  C: {
+    title: '陰天暢遊 · 午後下山', date: '七月六日 · 週日 · 陰天/多雲',
+    events: [
+      { delta: 1169, kind: '景點', title: '纜車看雲海（若開）', tip: '07:00 · 陰天雲海最美 · 民宿前台問纜車是否開 · 可能是全旅程最美畫面', cls: 'highlight' },
+      { delta: 1229, kind: '餐飲', title: '早餐 · 民宿', tip: '08:00 · 最後梯田早餐', cls: 'meal' },
+      { delta: 1259, kind: '體驗', title: '梯田最後漫步 · 拍照', tip: '08:30 · 陰天光線好 · 拍最後的梯田 · 行李先放房間' },
+      { delta: 1469, kind: '餐飲', title: '民宿午餐', tip: '12:00 · 吃飽再上路', cls: 'meal' },
+      { delta: 1514, kind: '住宿', title: '退房 · 行李裝車', tip: '12:45 · 吃完飯再退房 · 行李直接上包車' },
+      { delta: 1529, kind: '車程', title: '包車直達桂林飯店', tip: '13:00 · 約2h40m · ¥500-700（暑期溢價）· 直達詩與遠方·灕江院子 · 沿途觀景', cls: 'transit' },
+      { delta: 1629, kind: '住宿', title: '抵達桂林 · 詩與遠方·灕江院子', tip: '15:40 · check-in' },
+      { delta: 1679, kind: '景點', title: '蘆笛岩（¥110/人 · 室內溶洞）', tip: '16:30 · 桂林最經典溶洞 · 全程平坦有燈光 · 室內不受雨影響 · 娃能走 · 約 1.5h · 18:00結束', cls: 'highlight' },
+      { delta: 1799, kind: '景點', title: '象鼻山公園（免票 · 快速打卡）', tip: '18:00 · 桂林地標 · 30分鐘拍照 · 黃昏光線柔和' },
+      { delta: 1859, kind: '餐飲', title: '東西巷 + 正陽步行街晚餐', tip: '18:30 · 半室內', cls: 'meal' },
+      { delta: 1889, kind: '景點', title: '兩江四湖遊船（¥185/人）', tip: '19:00 · 比步行看的多 · 船上有講解 · 娃不累 · 4人¥740 · 日月雙塔夜景', cls: 'highlight' },
+    ]
+  }
+};
+function fmtTime(min) {
+  const total = ((min % 1440) + 1440) % 1440;
+  const h = Math.floor(total / 60);
+  const m = total - h * 60;
+  return String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+}
+function addMin(timeStr, delta) {
+  const [h, m] = timeStr.split(':').map(Number);
+  return fmtTime(h*60 + m + delta);
+}
+function timeToMin(t) { const [h,m]=t.split(':').map(Number); return h*60+m; }
+function hourOf(t) { return parseInt(t.split(':')[0]); }
+
+// Kind → 中文標籤 + CSS class
+const KIND_MAP = {
+  '準備':  ['準備出發','k-prepare'],
+  '車程':  ['交通','k-transit'],
+  '餐飲':  ['用餐','k-meal'],
+  '景點':  ['觀光','k-view'],
+  '體驗':  ['體驗','k-exp'],
+  '住宿':  ['住宿','k-stay'],
+  '休息':  ['休息','k-rest'],
+  '購物':  ['購物','k-shop'],
+  '抵達':  ['抵達','k-arrive'],
+  '搶票':  ['搶票','k-ticket'],
+};
+
+// 時段名稱
+function sectionLabel(h) {
+  if (h < 11) return '🌅 早上';
+  if (h < 14) return '☀️ 中午';
+  if (h < 18) return '🌤️ 下午';
+  return '🌙 晚間';
+}
+
+// 格式化耗時
+function durStr(min) {
+  if (min === 0) return '';
+  if (min < 60) return `⏱ ${min} min`;
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  return m > 0 ? `⏱ ${h}h${m}m` : `⏱ ${h}h`;
+}
+
+// SVG 山巒分隔線
+const MOUNTAIN_SVG = `<svg class="mountain-divider" viewBox="0 0 1200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 30 L80 20 L160 25 L240 10 L320 22 L400 8 L480 18 L560 5 L640 15 L720 12 L800 22 L880 8 L960 18 L1040 10 L1120 20 L1200 15"
+        stroke="#3d4a3d" stroke-width="1" fill="none" opacity="0.5"/>
+</svg>`;
+
+// 渲染行程
+const container = document.getElementById('itinerary');
+
+function renderItinerary(arriveTime, departTime, day2Scenario) {
+  const activeDay2 = day2Scenario || day2Scenarios.A;
+  const sections = itinerary.map((day, di) => {
+    // Day 2 使用當前選中的方案
+    const useDay = di === 1 ? {
+      ...day,
+      title: activeDay2.title,
+      date: activeDay2.date,
+      events: activeDay2.events
+    } : day;
+
+    // 先算好本日所有絕對時間
+    const base = di === 0 ? arriveTime : '11:31';
+    const times = useDay.events.map(ev =>
+      ev.useDepart ? departTime : addMin(base, ev.delta)
+    );
+
+    // 建立事件 HTML，穿插時段分隔
+    let eventsHTML = '';
+    let lastSec = '';
+    useDay.events.forEach((ev, ei) => {
+      const absTime = times[ei];
+      const h = hourOf(absTime);
+      const sec = sectionLabel(h);
+      const dur = (ei < times.length - 1)
+        ? timeToMin(times[ei+1]) - timeToMin(absTime)
+        : 0;
+
+      // 時段變化→插入分隔
+      if (sec !== lastSec) {
+        eventsHTML += `<li class="sec-break"><span>${sec}</span></li>`;
+        lastSec = sec;
+      }
+
+      const [kLabel, kClass] = KIND_MAP[ev.kind] || [ev.kind, ''];
+      const cls = ev.cls || '';
+      eventsHTML += `
+        <li class="event ${cls}" data-idx="${ei}">
+          <div class="ev-time">${absTime}</div>
+          <div class="ev-content">
+            <div class="ev-meta">
+              <span class="ev-kind ${kClass}">${kLabel}</span>
+              ${dur > 0 ? `<span class="ev-dur">${durStr(dur)}</span>` : ''}
+            </div>
+            <div class="ev-title">${ev.title}</div>
+            ${ev.tip ? `<div class="ev-tip">${ev.tip}</div>` : ''}
+          </div>
+        </li>
+      `;
+    });
+
+    return `
+      <article class="section day-feature" id="day-${useDay.day}">
+        <div class="day-header">
+          <div class="day-num">${useDay.day}<span class="label">${useDay.label}</span></div>
+          <div class="day-meta">
+            <h3>${useDay.title}</h3>
+            <div class="date">${useDay.date}</div>
+            ${di === 1 ? `
+              <div class="scenario-switcher" id="day2Switcher">
+                <button class="scn-btn ${currentScenario==='A'?'active':''}" data-scn="A">A 暴雨</button>
+                <button class="scn-btn ${currentScenario==='B'?'active':''}" data-scn="B">B 小雨</button>
+                <button class="scn-btn ${currentScenario==='C'?'active':''}" data-scn="C">C 陰天</button>
+                <span class="scn-hint">06:30 查天氣後切換</span>
+              </div>
+            ` : ''}
+          </div>
+        </div>
+        <ul class="timeline">${eventsHTML}</ul>
+      </article>
+      ${MOUNTAIN_SVG}
+    `;
+  }).join('');
+
+  container.innerHTML = sections;
+
+  // 進場動畫：依次淡入
+  const allEvents = container.querySelectorAll('.event');
+  allEvents.forEach((el, i) => {
+    setTimeout(() => el.classList.add('in'), 50 + i * 25);
+  });
+
+  // 更新錨點顯示
+  document.getElementById('arriveTime').textContent = arriveTime;
+}
+
+// 去程已鎖定 G3792，無需切換邏輯
+let currentScenario = 'A';
+
+// Day 2 方案切換
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('scn-btn')) {
+    currentScenario = e.target.dataset.scn;
+    renderItinerary('12:38', '09:07', day2Scenarios[currentScenario]);
+  }
+});
+
+// 初始化：G3792 已訂，直接渲染
+renderItinerary('12:38', '09:07', day2Scenarios.A);
+
+// 回到頂部按鈕：滾動 400px 後顯示
+const backTopBtn = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    backTopBtn.classList.add('show');
+  } else {
+    backTopBtn.classList.remove('show');
+  }
+}, { passive: true });
+backTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>

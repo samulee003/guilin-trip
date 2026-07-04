@@ -1,0 +1,29 @@
+# === Secrets / Credentials ===
+.env
+.env.*
+deploy/.edgeone/
+deploy/.edgeone/.token
+**/.edgeone/.token
+*.token
+
+# === WorkBuddy Internal (contains personal/family info) ===
+.workbuddy/
+
+# === macOS ===
+.DS_Store
+._*
+
+# === Node ===
+node_modules/
+package-lock.json
+yarn.lock
+
+# === Build artifacts ===
+deploy/.tef_dist/
+*.log
+
+# === Editor ===
+.vscode/
+.idea/
+*.swp
+*~

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桂林訂票清單 · 一鍵預訂</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f1e8;color:#2c2c2a;line-height:1.6;padding:20px;max-width:800px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin-bottom:8px;color:#4a5d3a}
+.subtitle{font-size:13px;color:#888780;margin-bottom:24px}
+.summary-bar{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.summary-card{flex:1;min-width:140px;background:#fff;border-radius:12px;padding:16px;border:0.5px solid #d3d1c7}
+.summary-card .num{font-size:28px;font-weight:500;color:#4a5d3a}
+.summary-card .label{font-size:11px;color:#888780;text-transform:uppercase;letter-spacing:0.1em}
+.summary-card.pending .num{color:#ba7517}
+.summary-card.done .num{color:#1d9e75}
+.item{background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;border:0.5px solid #d3d1c7;transition:border-color 0.2s}
+.item:hover{border-color:#4a5d3a}
+.item-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.item-title{font-size:16px;font-weight:500}
+.item-status{font-size:11px;padding:3px 10px;border-radius:4px;font-weight:500;white-space:nowrap}
+.status-todo{background:#faeeda;color:#854f0b}
+.status-done{background:#e1f5ee;color:#0f6e56}
+.status-reminder{background:#e6f1fb;color:#185fa5}
+.item-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#5f5e5a;margin-bottom:12px}
+.item-meta span{display:flex;align-items:center;gap:4px}
+.item-desc{font-size:13px;color:#5f5e5a;margin-bottom:16px;padding:10px;background:#f5f1e8;border-radius:8px}
+.item-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;text-decoration:none;font-weight:500;transition:opacity 0.2s}
+.btn:hover{opacity:0.85}
+.btn-primary{background:#4a5d3a;color:#f5f1e8}
+.btn-secondary{background:transparent;color:#4a5d3a;border:0.5px solid #4a5d3a}
+.btn-warning{background:#ba7517;color:#fff}
+.priority-tag{font-size:10px;padding:2px 8px;border-radius:3px;margin-right:8px;font-weight:500}
+.p-urgent{background:#fcebeb;color:#a32d2d}
+.p-high{background:#faeeda;color:#854f0b}
+.p-medium{background:#e6f1fb;color:#185fa5}
+.p-low{background:#e1f5ee;color:#0f6e56}
+.checkbox{width:20px;height:20px;border:2px solid #d3d1c7;border-radius:4px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin-right:8px;flex-shrink:0;transition:all 0.2s}
+.checkbox.checked{background:#4a5d3a;border-color:#4a5d3a;color:#fff}
+.item.checked .item-title{text-decoration:line-through;opacity:0.5}
+.rain-note{background:#fcebeb;border:0.5px solid #f09595;border-radius:8px;padding:12px;margin-bottom:16px;font-size:12px;color:#791f1f}
+.price-tag{font-family:"DM Mono",monospace;font-size:14px;color:#4a5d3a;font-weight:500}
+.footer{text-align:center;padding:24px 0;font-size:12px;color:#888780}
+.footer a{color:#4a5d3a}
+</style>
+</head>
+<body>
+
+<h1>📋 桂林訂票清單</h1>
+<p class="subtitle">2大2小 · 7/5-7/9 · 點擊連結直接跳轉飛豬/途牛下單頁</p>
+
+<div class="summary-bar">
+  <div class="summary-card done"><div class="num">4</div><div class="label">已完成</div></div>
+  <div class="summary-card pending"><div class="num">5</div><div class="label">待預訂</div></div>
+  <div class="summary-card"><div class="num">¥2,956</div><div class="label">待付金額</div></div>
+</div>
+
+<div class="rain-note">
+  ⚠️ <strong>雨天提醒：</strong>所有飛豬訂單請選「可退款」選項。7/6 大雨可能導致漂流封漂、飛拉達濕岩取消，務必確認退改政策。
+</div>
+
+<!-- 已完成項目 -->
+<div class="item checked">
+  <div class="item-header">
+    <div><span class="checkbox checked">✓</span><span class="item-title">去程高鐵 G3792</span></div>
+    <span class="item-status status-done">✓ 已訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/5 09:07→12:38</span>
+    <span>🚄 珠海→桂林西</span>
+    <span class="price-tag">¥293×4 = ¥1,172</span>
+  </div>
+</div>
+
+<div class="item checked">
+  <div class="item-header">
+    <div><span class="checkbox checked">✓</span><span class="item-title">回程高鐵 G3706 + G3749</span></div>
+    <span class="item-status status-done">✓ 已訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/9 17:55→22:05</span>
+    <span>🚄 阳朔→桂林西→珠海</span>
+    <span class="price-tag">¥324×4 = ¥1,296</span>
+  </div>
+</div>
+
+<div class="item checked">
+  <div class="item-header">
+    <div><span class="checkbox checked">✓</span><span class="item-title">漓江四星遊船</span></div>
+    <span class="item-status status-done">✓ 已訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/7 09:00</span>
+    <span>🚢 竹江碼頭→陽朔</span>
+  </div>
+</div>
+
+<div class="item checked">
+  <div class="item-header">
+    <div><span class="checkbox checked">✓</span><span class="item-title">3間酒店（4晚）</span></div>
+    <span class="item-status status-done">✓ 已訂</span>
+  </div>
+  <div class="item-meta">
+    <span>🏠 天空之城 / 詩與遠方 / 良宿×2</span>
+  </div>
+</div>
+
+<!-- 待訂項目 -->
+
+<div class="item">
+  <div class="item-header">
+    <div>
+      <span class="priority-tag p-urgent">最緊急</span>
+      <span class="checkbox">　</span>
+      <span class="item-title">遇龍河漂流 · 金龍橋→舊縣（9壩）</span>
+    </div>
+    <span class="item-status status-reminder">7/8晚8點搶</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/9 09:00</span>
+    <span>⏱ 90分鐘</span>
+    <span>👥 2筏×2人</span>
+    <span class="price-tag">¥320×2 = ¥640</span>
+  </div>
+  <div class="item-desc">
+    💡 <strong>方案A（最便宜·難搶）</strong>：7/8 晚 20:00 微信公眾號「遇龍河」搶次日票，提前綁4人身份證<br>
+    💡 <strong>方案B（貴一點·安心）</strong>：飛豬買可退款票，雨天封漂能退
+  </div>
+  <div class="item-actions">
+    <a href="https://a.feizhu.com/1FKnYQ" target="_blank" class="btn btn-primary">飛豬訂（可退款）→</a>
+    <a href="https://mp.weixin.qq.com/s/遇龙河官方" target="_blank" class="btn btn-secondary">官方公眾號搶票 →</a>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-header">
+    <div>
+      <span class="priority-tag p-high">高</span>
+      <span class="checkbox">　</span>
+      <span class="item-title">飛拉達攀岩（姐姐參加）</span>
+    </div>
+    <span class="item-status status-todo">待訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/8 08:30</span>
+    <span>⏱ 1.5h</span>
+    <span>👥 1人（姐姐）</span>
+    <span class="price-tag">¥298</span>
+  </div>
+  <div class="item-desc">
+    💡 A線 ¥298（網紅橋·適合初次）或岩邦B線 ¥260（天梯+溜索·性價比高）<br>
+    ⚠️ 雨天濕岩可能取消，務必買可退款。備選：銀子岩溶洞
+  </div>
+  <div class="item-actions">
+    <a href="https://a.feizhu.com/0Gp9QX" target="_blank" class="btn btn-primary">飛拉達A線（親子推薦）→</a>
+    <a href="https://a.feizhu.com/48JcDd" target="_blank" class="btn btn-secondary">岩邦B線（¥260）→</a>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-header">
+    <div>
+      <span class="priority-tag p-high">高</span>
+      <span class="checkbox">　</span>
+      <span class="item-title">ATV 越野車（親子雙人車）</span>
+    </div>
+    <span class="item-status status-todo">待訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/8 15:00</span>
+    <span>⏱ 1h</span>
+    <span>👥 2台雙人車</span>
+    <span class="price-tag">¥249×2 = ¥498</span>
+  </div>
+  <div class="item-desc">
+    💡 途牛雙人票 ¥249/台最划算，含陽朔縣城接送<br>
+    ⚠️ 6歲妹妹必須大人同車。大雨取消，備選：印象劉三姐演出
+  </div>
+  <div class="item-actions">
+    <a href="https://m.tuniu.com/menpiao/4435547" target="_blank" class="btn btn-primary">途牛訂（¥249/雙人）→</a>
+    <a href="https://a.feizhu.com/0AnboN" target="_blank" class="btn btn-secondary">飛豬訂（含接送）→</a>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-header">
+    <div>
+      <span class="priority-tag p-medium">中</span>
+      <span class="checkbox">　</span>
+      <span class="item-title">月亮水岩探洞（雨天保底活動）</span>
+    </div>
+    <span class="item-status status-todo">待訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/9 11:00</span>
+    <span>⏱ 1.5h</span>
+    <span>👥 4人</span>
+    <span class="price-tag">¥240×4 = ¥960</span>
+  </div>
+  <div class="item-desc">
+    💡 含教練+裝備+保險，大小同價。洞內不受雨天影響，完美保底<br>
+    ⚠️ 6歲可能害怕需大人陪。至少提前1天報名
+  </div>
+  <div class="item-actions">
+    <a href="https://a.feizhu.com/4KGztb" target="_blank" class="btn btn-primary">飛豬訂（含教練裝備）→</a>
+    <a href="https://a.feizhu.com/2IPr34" target="_blank" class="btn btn-secondary">飛豬訂（含接送保險）→</a>
+  </div>
+</div>
+
+<div class="item">
+  <div class="item-header">
+    <div>
+      <span class="priority-tag p-low">低</span>
+      <span class="checkbox">　</span>
+      <span class="item-title">龍脊梯田門票</span>
+    </div>
+    <span class="item-status status-todo">待訂</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/5</span>
+    <span>⏱ 3日通票</span>
+    <span>👥 2大+兒童</span>
+    <span class="price-tag">¥80×2+ = ¥160+</span>
+  </div>
+  <div class="item-desc">
+    💡 飛豬買省排隊，纜車現場買（¥100/人往返，無差價）<br>
+    妹妹6歲身高不足1.2米可能免票，以現場為準
+  </div>
+  <div class="item-actions">
+    <a href="https://a.feizhu.com/29VO80" target="_blank" class="btn btn-primary">飛豬訂門票 →</a>
+  </div>
+</div>
+
+<!-- 需自行聯繫 -->
+<div class="item">
+  <div class="item-header">
+    <div>
+      <span class="priority-tag p-low">自行聯繫</span>
+      <span class="checkbox">　</span>
+      <span class="item-title">龍脊抓魚 + 民族服裝拍照</span>
+    </div>
+    <span class="item-status status-todo">待聯繫</span>
+  </div>
+  <div class="item-meta">
+    <span>📅 7/5 下午</span>
+    <span>💰 ¥25/娃 + ¥60/套</span>
+  </div>
+  <div class="item-desc">
+    💡 聯繫「天空之城」民宿老闆安排，出發前微信確認<br>
+    雨天照常（本來就要下水），民族服裝可改室內拍
+  </div>
+</div>
+
+<div class="footer">
+  <p>訂票清單基於飛豬/途牛/官方公開信息整理 · 實際價格以平台下單頁為準</p>
+  <p>© 2026 路小鮮 Leo · 桂林5日親子遊</p>
+</div>
+
+<script>
+document.querySelectorAll('.checkbox').forEach(cb => {
+  cb.addEventListener('click', function() {
+    this.classList.toggle('checked');
+    this.closest('.item').classList.toggle('checked');
+    if (this.classList.contains('checked')) {
+      this.innerHTML = '✓';
+    } else {
+      this.innerHTML = '　';
+    }
+  });
+});
+</script>
+
+</body>
+</html>
